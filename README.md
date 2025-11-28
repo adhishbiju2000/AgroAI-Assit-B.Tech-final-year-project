@@ -2,6 +2,13 @@
 
 **AgroAI Assist: CNN-Based Leaf Disease Detection with Real-Time Weather Alerts and Multilingual Chatbot Support for Farmers in India**
 
+## Introduction
+
+Agriculture remains the backbone of the global economy, yet farmers face significant challenges in early disease detection, weather unpredictability, and access to expert knowledge. Traditional diagnostic methods are time-consuming, expensive, and often unavailable in remote areas. Delayed disease identification leads to substantial crop losses, affecting both yield and farmer livelihoods.
+
+**AgroAI Assist** addresses these critical challenges by leveraging artificial intelligence and machine learning to provide an intelligent, accessible platform for real-time crop disease detection, weather forecasting, and multilingual agricultural assistance. The system empowers farmers with instant, accurate diagnostics and actionable insights through an intuitive web-based interface.
+
+
 <img width="1347" height="635" alt="Home Page 1" src="https://github.com/user-attachments/assets/b04b68fb-ca1a-4c40-a3c7-ea9ced50c64f" />
 
 ## Publication
@@ -49,12 +56,6 @@ This publication validates the technical rigor, innovation, and real-world appli
 
 ---
 
-
-## Introduction
-
-Agriculture remains the backbone of the global economy, yet farmers face significant challenges in early disease detection, weather unpredictability, and access to expert knowledge. Traditional diagnostic methods are time-consuming, expensive, and often unavailable in remote areas. Delayed disease identification leads to substantial crop losses, affecting both yield and farmer livelihoods.
-
-**AgroAI Assist** addresses these critical challenges by leveraging artificial intelligence and machine learning to provide an intelligent, accessible platform for real-time crop disease detection, weather forecasting, and multilingual agricultural assistance. The system empowers farmers with instant, accurate diagnostics and actionable insights through an intuitive web-based interface.
 
 
 
