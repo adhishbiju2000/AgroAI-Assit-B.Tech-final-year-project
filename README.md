@@ -1,8 +1,8 @@
 # AgroAI Assist
 
-**A Deep Learning-Powered Agricultural Decision Support System for Disease Detection and Crop Management**
+**CNN-Based Leaf Disease Detection with Real-Time Weather Alerts and Multilingual Chatbot Support for Farmers in India**
 
-[![Published in Vesper International Journal](https://img.shields.io/badge/Published-Vesper%20International%20Journal-blue)](vesper09101423.pdf)
+[![Published Paper](https://img.shields.io/badge/📄_Published_in-Vesper_International_Journal-0088cc?style=for-the-badge&labelColor=004466)](vesper09101423.pdf)
 
 ---
 
