@@ -165,7 +165,9 @@ Loss Function: Categorical Cross-Entropy
 
 The dashboard serves as the central hub for all application features, providing an intuitive navigation experience.
 
-![Dashboard](images/dashboard.png)
+<img width="1337" height="637" alt="Dashborad" src="https://github.com/user-attachments/assets/805bd804-6d45-484e-9d6c-2bad635ae82f" />
+
+
 
 **Dashboard Components:**
 - **Navigation Bar**: Fixed top navigation with quick access to all modules (Disease Detection, Weather, Chatbot, Profile)
