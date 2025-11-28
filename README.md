@@ -5,23 +5,49 @@
 
 ## Publication
 
-- **Title:** *AgroAI Assist: CNN-Based Leaf Disease Detection with Real-Time Weather Alerts and Multilingual Chatbot Support for Farmers in India*
-- **Journal:** Vesper International Journal  
-  [![View Publication](https://img.shields.io/badge/📄_View_Publication-Vesper_International_Journal_(ISSN_2704--7598)-1a73e8?style=for-the-badge&labelColor=174ea6)](vesper09101423.pdf)
-- **ISSN:** 2704-7598  
-- **Indexing:** Scopus | Web of Science | UGC CARE Group II  
-- **Category:** International Peer-Reviewed Journal  
+Our research has been published in the **Vesper International Journal (ISSN: 2704-7598)**, a globally recognized, peer-reviewed academic publication known for its rigorous standards and international reach. The journal is indexed in premier academic databases including **Scopus**, **Web of Science**, and **UGC CARE Group II**, ensuring substantial credibility and scholarly visibility.
 
-This research paper has been published in the **Vesper International Journal (ISSN: 2704-7598)**, a prestigious international publication recognized for its high academic standards and global visibility. The journal is indexed in **Scopus**, **Web of Science**, and **UGC CARE Group II**, ensuring strong credibility and international recognition.
+Vesper International Journal serves as a distinguished platform for interdisciplinary research, facilitating the dissemination of innovative studies across science, technology, agriculture, and artificial intelligence domains.
 
-Vesper Journal promotes cross-disciplinary research and serves as a global platform for innovative studies in science, technology, agriculture, and artificial intelligence.
+<div align="center">
+
+### Published Research Article
+
+**Title:** *AgroAI Assist: CNN-Based Leaf Disease Detection with Real-Time Weather Alerts and Multilingual Chatbot Support for Farmers in India*
+
+[![View Publication](https://img.shields.io/badge/📄_View_Publication-Vesper_International_Journal-1a73e8?style=for-the-badge&labelColor=174ea6)](vesper09101423.pdf)
+
+</div>
+
+---
+
+**Publication Details:**
+
+| **Attribute** | **Details** |
+|---------------|-------------|
+| **Journal** | Vesper International Journal |
+| **ISSN** | 2704-7598 |
+| **Category** | International Peer-Reviewed Journal |
+| **Indexing** | Scopus • Web of Science • UGC CARE Group II |
+| **Research Domain** | Artificial Intelligence in Agriculture |
+| **Publication Type** | Original Research Article |
+| **Review Process** | Double-Blind Peer Review |
+
+---
+
+**Academic Impact:**
+- Indexed in **Scopus** – Ensuring global research visibility and citation tracking
+- Listed in **Web of Science** – Recognized for high-quality scholarly research
+- Approved by **UGC CARE Group II** – Validated for academic and research excellence in India
+
+This publication validates the technical rigor, innovation, and real-world applicability of the AgroAI Assist system, contributing to the growing body of knowledge in precision agriculture and AI-driven agricultural solutions.
+
 
 
 
 
 ---
 
-<h2>Introduction</h2>
 
 ## Introduction
 
