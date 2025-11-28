@@ -5,9 +5,9 @@
 
 ## Publication
 
-Our research has been published in the **Vesper International Journal (ISSN: 2704-7598)**, a globally recognized, peer-reviewed academic publication known for its rigorous standards and international reach. The journal is indexed in premier academic databases including **Scopus**, **Web of Science**, and **UGC CARE Group II**, ensuring substantial credibility and scholarly visibility.
+Our research has been published in the **Vesper Journal (ISSN: 2704-7598)**, an internationally recognized, peer-reviewed academic publication known for its rigorous standards and global reach. The journal is indexed in premier academic databases including **Scopus**, **Web of Science**, and **UGC CARE Group II**, ensuring substantial credibility and scholarly visibility.
 
-Vesper International Journal serves as a distinguished platform for interdisciplinary research, facilitating the dissemination of innovative studies across science, technology, agriculture, and artificial intelligence domains.
+Vesper Journal serves as a distinguished platform for interdisciplinary research, facilitating the dissemination of innovative studies across science, technology, agriculture, and artificial intelligence domains.
 
 <div align="center">
 
@@ -15,7 +15,7 @@ Vesper International Journal serves as a distinguished platform for interdiscipl
 
 **Title:** *AgroAI Assist: CNN-Based Leaf Disease Detection with Real-Time Weather Alerts and Multilingual Chatbot Support for Farmers in India*
 
-[![View Publication](https://img.shields.io/badge/📄_View_Publication-Vesper_International_Journal-1a73e8?style=for-the-badge&labelColor=174ea6)](vesper09101423.pdf)
+[![View Publication](https://img.shields.io/badge/📄_View_Publication-Vesper_Journal-1a73e8?style=for-the-badge&labelColor=174ea6)](vesper09101423.pdf)
 
 </div>
 
@@ -25,7 +25,7 @@ Vesper International Journal serves as a distinguished platform for interdiscipl
 
 | **Attribute** | **Details** |
 |---------------|-------------|
-| **Journal** | Vesper International Journal |
+| **Journal** | Vesper Journal (International) |
 | **ISSN** | 2704-7598 |
 | **Category** | International Peer-Reviewed Journal |
 | **Indexing** | Scopus • Web of Science • UGC CARE Group II |
@@ -36,9 +36,9 @@ Vesper International Journal serves as a distinguished platform for interdiscipl
 ---
 
 **Academic Impact:**
-- Indexed in **Scopus** – Ensuring global research visibility and citation tracking
-- Listed in **Web of Science** – Recognized for high-quality scholarly research
-- Approved by **UGC CARE Group II** – Validated for academic and research excellence in India
+- Indexed in **Scopus** – Ensuring global research visibility and citation tracking  
+- Listed in **Web of Science** – Recognized for high-quality scholarly research  
+- Approved by **UGC CARE Group II** – Validated for academic and research excellence in India  
 
 This publication validates the technical rigor, innovation, and real-world applicability of the AgroAI Assist system, contributing to the growing body of knowledge in precision agriculture and AI-driven agricultural solutions.
 
