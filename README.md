@@ -10,11 +10,16 @@
 
 ---
 
-## Introduction
+<h2>Introduction</h2>
 
+<p style="text-align: justify;">
 Agriculture remains the backbone of the global economy, yet farmers face significant challenges in early disease detection, weather unpredictability, and access to expert knowledge. Traditional diagnostic methods are time-consuming, expensive, and often unavailable in remote areas. Delayed disease identification leads to substantial crop losses, affecting both yield and farmer livelihoods.
+</p>
 
-**AgroAI Assist** addresses these critical challenges by leveraging artificial intelligence and machine learning to provide an intelligent, accessible platform for real-time crop disease detection, weather forecasting, and multilingual agricultural assistance. The system empowers farmers with instant, accurate diagnostics and actionable insights through an intuitive web-based interface.
+<p style="text-align: justify;">
+<b>AgroAI Assist</b> addresses these critical challenges by leveraging artificial intelligence and machine learning to provide an intelligent, accessible platform for real-time crop disease detection, weather forecasting, and multilingual agricultural assistance. The system empowers farmers with instant, accurate diagnostics and actionable insights through an intuitive web-based interface.
+</p>
+
 
 ---
 
