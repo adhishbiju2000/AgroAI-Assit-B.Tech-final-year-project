@@ -2,7 +2,10 @@
 
 **CNN-Based Leaf Disease Detection with Real-Time Weather Alerts and Multilingual Chatbot Support for Farmers in India**
 
-[![Published Research](https://img.shields.io/badge/Published_Research-Vesper_International_Journal-red?style=for-the-badge&logo=googlescholar&logoColor=white)](vesper09101423.pdf)
+[![Publication](https://img.shields.io/badge/Publication-Vesper_International_Journal-blue?style=for-the-badge)](vesper09101423.pdf)
+[![Status](https://img.shields.io/badge/Status-Published-success?style=for-the-badge)](vesper09101423.pdf)
+[![Category](https://img.shields.io/badge/Category-AI/ML_in_Agriculture-orange?style=for-the-badge)](vesper09101423.pdf)
+
 
 ---
 
