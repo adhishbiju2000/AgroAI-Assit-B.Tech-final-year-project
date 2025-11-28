@@ -1,4 +1,4 @@
-# AgroAI Assist (B-Tech Major Project)
+# AgroAI Assist 
 
 **AgroAI Assist: CNN-Based Leaf Disease Detection with Real-Time Weather Alerts and Multilingual Chatbot Support for Farmers in India**
 
