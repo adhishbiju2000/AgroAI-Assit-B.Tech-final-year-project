@@ -10,9 +10,9 @@ Agriculture faces major challenges including delayed disease detection, unpredic
 - **AI-powered disease detection** (EfficientNet CNN)  
 - **Real-time weather forecasting**  
 - **Multilingual AI chatbot**  
-- **Farmer-friendly dashboard**  
-
-This makes advanced agricultural intelligence accessible to farmers, promoting early intervention and improved crop management.
+- **Farmer-friendly dashboard**
+  
+The system bridges the gap between **advanced AI research** and **practical agricultural needs**, making precision farming more accessible to rural users and makes advanced agricultural intelligence accessible to farmers, promoting early intervention and improved crop management.
 
 <img width="700" height="400" alt="Home Page" src="https://github.com/user-attachments/assets/b04b68fb-ca1a-4c40-a3c7-ea9ced50c64f" />
 
@@ -24,7 +24,6 @@ AgroAI Assist is an AI-driven agricultural support system that enables farmers t
 - Communicate with a **multilingual AI chatbot**  
 - Make informed farming decisions through a simple web interface  
 
-The system bridges the gap between **advanced AI research** and **practical agricultural needs**, making precision farming more accessible to rural users.
 
 ---
 
@@ -36,13 +35,14 @@ Our research has been published in the **Vesper Journal (ISSN: 2704-7598)**—an
 - **Web of Science**  
 - **UGC CARE Group II**
 
-
+<div=center>
 
 ### Published Research Article  
 **Title:** *AgroAI Assist: CNN-Based Leaf Disease Detection with Real-Time Weather Alerts and Multilingual Chatbot Support for Farmers in India*
 
 [![View Publication](https://img.shields.io/badge/📄_View_Publication-Vesper_Journal-1a73e8?style=for-the-badge&labelColor=174ea6)](vesper09101423.pdf)
 
+</div>
 
 ### Publication Details
 
