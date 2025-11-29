@@ -2,8 +2,6 @@
 
 #### AgroAI Assist: CNN-Based Leaf Disease Detection with Real-Time Weather Alerts and Multilingual Chatbot Support for Farmers in India *B.Tech Major Project | Published in Vesper Journal (Scopus Indexed)*  
 
-Special thanks to **Dr. Jinesh Melvin Y I**, Project Guide at *Pillai College of Engineering, Panvel*
-
 ## Introduction
 
 Agriculture faces major challenges including delayed disease detection, unpredictable weather patterns, and limited expert availability—especially in rural regions. These issues cause severe crop losses and financial instability for farmers.
