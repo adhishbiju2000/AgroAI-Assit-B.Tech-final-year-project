@@ -1,6 +1,6 @@
 # AgroAI Assist  
 
-**AI-Powered Crop Disease Detection with EfficientNet CNN, Real-Time Weather Insights, and a Multilingual Agricultural Chatbot**  
+**CNN-Based Leaf Disease Detection with Real-Time Weather Alerts and Multilingual Chatbot Support for Farmers in India**  
 
 **B.Tech Major Project | Published in Vesper Journal (Scopus Indexed)**  
 
@@ -13,8 +13,6 @@ Led by **Adhish Biju**, responsible for:
 - Full integration of AI modules into Python Flask  
 - Research paper preparation and publication  
 - Backend, frontend, deployment, and end-to-end testing  
-
----
 
 ## Project Overview 
 AgroAI Assist is an AI-driven agricultural support system that enables farmers to:  
