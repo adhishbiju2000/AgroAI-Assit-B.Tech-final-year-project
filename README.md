@@ -3,24 +3,6 @@
 **AgroAI Assist: CNN-Based Leaf Disease Detection with Real-Time Weather Alerts and Multilingual Chatbot Support for Farmers in India**
 **B-Tech Major Project**
 
----
-
-## Acknowledgements
-
-A special thanks to **Dr. Jinesh Melvin Y I**, Project Guide at *Pillai College of Engineering, Panvel*, for his continuous guidance, valuable feedback, and academic support throughout the development of this project.
-
-As the **Team Leader (Adhish Biju)**, it has been a great journey leading and coordinating the technical and research components of this project.
-
-Sincere thanks to my team members:  
-- **Ashwin Baburaj**  
-- **Yash Karande**  
-- **Vuvarj Kolekar**  
-
-for their dedication, teamwork, and valuable contributions toward the successful completion of *AgroAI Assist*.
-
----
-
-
 ## Introduction
 
 Agriculture remains the backbone of the global economy, yet farmers face significant challenges in early disease detection, weather unpredictability, and access to expert knowledge. Traditional diagnostic methods are time-consuming, expensive, and often unavailable in remote areas. Delayed disease identification leads to substantial crop losses, affecting both yield and farmer livelihoods.
@@ -72,13 +54,23 @@ This publication validates the technical rigor, innovation, and real-world appli
 
 
 
-
 ---
+### Project Leadership
+Led by **Adhish Biju**, responsible for project coordination, System Archetercure research work, EfficientNet (CNN-based) model development, full integration of all modules into the Python Flask framework, and end-to-end system testing.
 
 
+### Roles & Responsibilities (Team Leader — Adhish Biju)
 
-
----
+- Led the complete end-to-end development of the AgroAI Assist system  
+- Conducted research and literature review for CNN-based plant disease detection  
+- Developed and trained the EfficientNet model for accurate leaf disease classification  
+- Designed the system architecture and workflow for model integration  
+- Implemented the full project using Python Flask (frontend + backend)  
+- Integrated all major modules: Disease Detection, Weather API, Multilingual Chatbot  
+- Performed dataset preprocessing, augmentation, and model evaluation  
+- Handled complete project testing, debugging, and performance tuning  
+- Coordinated team tasks, ensured timely delivery, and resolved technical issues  
+- Prepared research documentation for journal publication and project presentation  
 
 ## Purpose and Objectives
 
@@ -366,6 +358,23 @@ The dashboard serves as the central hub for all application features, providing 
 - Expert consultation booking system
 - Government extension officer integration
 - Regional language content expansion
+
+---
+
+---
+
+## Acknowledgements
+
+A special thanks to **Dr. Jinesh Melvin Y I**, Project Guide at *Pillai College of Engineering, Panvel*, for his continuous guidance, valuable feedback, and academic support throughout the development of this project.
+
+As the **Team Leader (Adhish Biju)**, it has been a great journey leading and coordinating the technical and research components of this project.
+
+Sincere thanks to my team members:  
+- **Ashwin Baburaj**  
+- **Yash Karande**  
+- **Vuvarj Kolekar**  
+
+for their dedication, teamwork, and valuable contributions toward the successful completion of *AgroAI Assist*.
 
 ---
 
