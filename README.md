@@ -16,7 +16,7 @@ Agriculture faces major challenges including delayed disease detection, unpredic
 
 This makes advanced agricultural intelligence accessible to farmers, promoting early intervention and improved crop management.
 
-<img width="800" height="400" alt="Home Page" src="https://github.com/user-attachments/assets/b04b68fb-ca1a-4c40-a3c7-ea9ced50c64f" />
+<img width="700" height="400" alt="Home Page" src="https://github.com/user-attachments/assets/b04b68fb-ca1a-4c40-a3c7-ea9ced50c64f" />
 
 
 ### Project Leadership 
