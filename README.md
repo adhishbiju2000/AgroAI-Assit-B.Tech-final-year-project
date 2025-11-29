@@ -2,6 +2,20 @@
 
 **CNN-Based Leaf Disease Detection with Real-Time Weather Alerts and Multilingual Chatbot Support for Farmers in India**  
 
+## Introduction
+
+Agriculture faces major challenges including delayed disease detection, unpredictable weather patterns, and limited expert availability—especially in rural regions. These issues cause severe crop losses and financial instability for farmers.
+
+**AgroAI Assist** addresses these challenges by integrating:  
+- **AI-powered disease detection** (EfficientNet CNN)  
+- **Real-time weather forecasting**  
+- **Multilingual AI chatbot**  
+- **Farmer-friendly dashboard**  
+
+This makes advanced agricultural intelligence accessible to farmers, promoting early intervention and improved crop management.
+
+<img width="1047" height="535" alt="Home Page" src="https://github.com/user-attachments/assets/b04b68fb-ca1a-4c40-a3c7-ea9ced50c64f" />
+
 **B.Tech Major Project | Published in Vesper Journal (Scopus Indexed)**  
 
 Special thanks to **Dr. Jinesh Melvin Y I**, Project Guide at *Pillai College of Engineering, Panvel*, for his guidance and support
@@ -53,23 +67,7 @@ Our research has been published in the **Vesper Journal (ISSN: 2704-7598)**—an
 | **Type** | Original Research Article |
 | **Review Process** | Double-Blind Peer Review |
 
----
 
-## Introduction
-
-Agriculture faces major challenges including delayed disease detection, unpredictable weather patterns, and limited expert availability—especially in rural regions. These issues cause severe crop losses and financial instability for farmers.
-
-**AgroAI Assist** addresses these challenges by integrating:  
-- **AI-powered disease detection** (EfficientNet CNN)  
-- **Real-time weather forecasting**  
-- **Multilingual AI chatbot**  
-- **Farmer-friendly dashboard**  
-
-This makes advanced agricultural intelligence accessible to farmers, promoting early intervention and improved crop management.
-
-<img width="1047" height="535" alt="Home Page" src="https://github.com/user-attachments/assets/b04b68fb-ca1a-4c40-a3c7-ea9ced50c64f" />
-
----
 
 ## Roles & Responsibilities (Team Leader — Adhish Biju)
 
