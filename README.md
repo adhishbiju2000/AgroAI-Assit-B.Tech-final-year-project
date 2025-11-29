@@ -3,7 +3,9 @@
 **AI-Powered Crop Disease Detection with EfficientNet CNN, Real-Time Weather Insights, and a Multilingual Agricultural Chatbot**  
 **B.Tech Major Project | Published in Vesper Journal (Scopus Indexed)**  
 
-### Project Leadership (Recruiter-Focused)
+#### Special thanks to **Dr. Jinesh Melvin Y I**, Project Guide at *Pillai College of Engineering, Panvel*, for his guidance and support
+
+### Project Leadership 
 Led by **Adhish Biju**, responsible for:  
 - End-to-end system development & project coordination  
 - EfficientNet CNN model development & training  
@@ -13,7 +15,7 @@ Led by **Adhish Biju**, responsible for:
 
 ---
 
-## Project Overview (Fast Recruiter Summary)
+## Project Overview 
 AgroAI Assist is an AI-driven agricultural support system that enables farmers to:  
 - Detect potato leaf diseases using **EfficientNet CNN**  
 - Access **real-time weather insights**  
