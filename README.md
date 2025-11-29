@@ -1,6 +1,6 @@
 # AgroAI Assist 
 
-**AgroAI Assist: CNN-Based Leaf Disease Detection with Real-Time Weather Alerts and Multilingual Chatbot Support for Farmers in India**
+**AgroAI Assist: CNN-Based Leaf Disease Detection with Real-Time Weather Alerts and Multilingual Chatbot Support for Farmers in India.(B-Tech Major Project)**
 
 ## Introduction
 
