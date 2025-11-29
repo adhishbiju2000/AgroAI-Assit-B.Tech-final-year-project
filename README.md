@@ -1,9 +1,10 @@
 # AgroAI Assist  
 
 **AI-Powered Crop Disease Detection with EfficientNet CNN, Real-Time Weather Insights, and a Multilingual Agricultural Chatbot**  
+
 **B.Tech Major Project | Published in Vesper Journal (Scopus Indexed)**  
 
-#### Special thanks to **Dr. Jinesh Melvin Y I**, Project Guide at *Pillai College of Engineering, Panvel*, for his guidance and support
+Special thanks to **Dr. Jinesh Melvin Y I**, Project Guide at *Pillai College of Engineering, Panvel*, for his guidance and support
 
 ### Project Leadership 
 Led by **Adhish Biju**, responsible for:  
