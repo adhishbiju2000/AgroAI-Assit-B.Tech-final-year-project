@@ -16,8 +16,6 @@ Agriculture remains the backbone of the global economy, yet farmers face signifi
 
 Our research has been published in the **Vesper Journal (ISSN: 2704-7598)**, an internationally recognized, peer-reviewed academic publication known for its rigorous standards and global reach. The journal is indexed in premier academic databases including **Scopus**, **Web of Science**, and **UGC CARE Group II**, ensuring substantial credibility and scholarly visibility.
 
-Vesper Journal serves as a distinguished platform for interdisciplinary research, facilitating the dissemination of innovative studies across science, technology, agriculture, and artificial intelligence domains.
-
 <div align="center">
 
 ### Published Research Article
@@ -63,12 +61,11 @@ Led by **Adhish Biju**, responsible for project coordination, System Archetercur
 
 - Led the complete end-to-end development of the AgroAI Assist system  
 - Conducted research and literature review for CNN-based plant disease detection  
-- Developed and trained the EfficientNet model for accurate leaf disease classification  
+- Contributed to the development and training of the EfficientNet model for accurate leaf disease classification.
 - Designed the system architecture and workflow for model integration  
 - Implemented the full project using Python Flask (frontend + backend)  
-- Integrated all major modules: Disease Detection, Weather API, Multilingual Chatbot  
-- Performed dataset preprocessing, augmentation, and model evaluation  
-- Handled complete project testing, debugging, and performance tuning  
+- Integrated all major modules: Disease Detection Model, Weather API Integration, Multilingual AI Chatbot Integration  
+- Handled complete project testing, debugging, and performance of the entire project 
 - Coordinated team tasks, ensured timely delivery, and resolved technical issues  
 - Prepared research documentation for journal publication and project presentation  
 
