@@ -17,14 +17,6 @@ This makes advanced agricultural intelligence accessible to farmers, promoting e
 <img width="700" height="400" alt="Home Page" src="https://github.com/user-attachments/assets/b04b68fb-ca1a-4c40-a3c7-ea9ced50c64f" />
 
 
-### Project Leadership 
-Led by **Adhish Biju**, responsible for:  
-- End-to-end system development & project coordination  
-- EfficientNet CNN model development & training  
-- Full integration of AI modules into Python Flask  
-- Research paper preparation and publication  
-- Backend, frontend, deployment, and end-to-end testing  
-
 ## Project Overview 
 AgroAI Assist is an AI-driven agricultural support system that enables farmers to:  
 - Detect potato leaf diseases using **EfficientNet CNN**  
@@ -65,18 +57,13 @@ Our research has been published in the **Vesper Journal (ISSN: 2704-7598)**—an
 | **Review Process** | Double-Blind Peer Review |
 
 
-
-## Roles & Responsibilities (Team Leader — Adhish Biju)
-
-- Led end-to-end project execution and team coordination  
-- Conducted research for CNN-based disease classification  
-- Contributed to development and training of the EfficientNet model  
-- Designed the system architecture and integration workflow  
-- Developed the entire project using Python Flask (frontend + backend)  
-- Integrated key modules: AI model, Weather API, Multilingual Chatbot  
-- Performed testing, debugging, and performance optimization  
-- Authored and prepared the work for journal publication  
-
+### Project Leadership 
+Led by **Adhish Biju**, responsible for:  
+- End-to-end system development & project coordination  
+- EfficientNet CNN model development & training  
+- Full integration of AI modules into Python Flask  
+- Research paper preparation and publication  
+- Backend, frontend, deployment, and end-to-end testing  
 ---
 
 ## Purpose and Objectives
