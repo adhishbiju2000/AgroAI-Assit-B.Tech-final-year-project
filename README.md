@@ -71,7 +71,7 @@ To equip farmers with an intelligent platform for early disease detection, weath
 - Farmer-friendly interface  
 - Demonstrate real-world application of AI/ML in agriculture  
 
----
+
 
 ## System Architecture
 
@@ -106,7 +106,7 @@ EfficientNet-B3 was selected for its accuracy, computational efficiency, and sui
 - **Validation Accuracy:** 94.2%  
 - **Inference Time:** ~180ms (CPU)  
 
----
+
 
 ## Application Modules
 
@@ -153,7 +153,7 @@ Central hub showing detection stats, weather widget, and quick navigation.
 ### Multilingual chatbot for Farmers in India for Different Differnt Regional Langugae
 ![WhatsApp Image 2025-11-27 at 11 39 49_87471b55](https://github.com/user-attachments/assets/4180a62b-8746-4def-b607-2a64b055c6a6)
 
----
+
 
 ## Tools & Technologies
 
@@ -167,7 +167,7 @@ Central hub showing detection stats, weather widget, and quick navigation.
 | APIs | OpenWeatherMap, NLP Chatbot |
 | Version Control | Git & GitHub |
 
----
+
 
 ## Results & Impact
 
@@ -181,7 +181,7 @@ Central hub showing detection stats, weather widget, and quick navigation.
 - Reduces crop loss via early disease identification  
 - Multilingual support increases usability  
 
----
+
 
 ## Future Scope
 - Support for 20+ crop varieties  
@@ -190,7 +190,7 @@ Central hub showing detection stats, weather widget, and quick navigation.
 - Drone image analysis  
 - Yield prediction and geospatial disease mapping  
 
----
+
 
 ## Acknowledgements
 
@@ -201,6 +201,8 @@ Thanks to project team members:
 - **Yash Karande**  
 - **Vuvarj Kolekar**  
 
+#### *Form*
+Project Leader : Adhish Biju
 ---
 
 ## Conclusion
@@ -210,8 +212,9 @@ AgroAI Assist demonstrates how AI can transform agriculture by enabling early di
 <div align="center">
 
 **Project Status:** Completed & Published  
-**Publication:** Vesper Journal  
-**Contact:** [Add your email or LinkedIn]  
+**Publication:** Vesper Journal 
+**Name** Adhish Biju
+**Contact:** [GmaiL: adhishbiju2000@gmail.com]  
 
 </div>
 
