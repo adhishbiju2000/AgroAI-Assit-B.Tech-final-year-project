@@ -14,33 +14,21 @@ Agriculture faces major challenges including delayed disease detection, unpredic
   
 The system bridges the gap between **advanced AI research** and **practical agricultural needs**, making precision farming more accessible to rural users and makes advanced agricultural intelligence accessible to farmers, promoting early intervention and improved crop management.
 
-<img width="700" height="400" alt="Home Page" src="https://github.com/user-attachments/assets/b04b68fb-ca1a-4c40-a3c7-ea9ced50c64f" />
+<img width="400" height="200" alt="Home Page" src="https://github.com/user-attachments/assets/b04b68fb-ca1a-4c40-a3c7-ea9ced50c64f" />
 
 
 ## Project Overview 
 AgroAI Assist is an AI-driven agricultural support system that enables farmers to:  
 - Detect potato leaf diseases using **EfficientNet CNN**  
-- Access **real-time weather insights**  
-- Communicate with a **multilingual AI chatbot**  
+- Access **real-time weather insights and five days weather forcast**  
+- Communicate with a **Multilingual AI chatbot for farmers in India**  
 - Make informed farming decisions through a simple web interface  
-
 
 ---
 
 ## Publication
 
-Our research has been published in the **Vesper Journal (ISSN: 2704-7598)**—an internationally recognized, peer-reviewed journal indexed in:
-
-- **Scopus**  
-- **Web of Science**  
-- **UGC CARE Group II**
-
-
-### Published Research Article  
-**Title:** *AgroAI Assist: CNN-Based Leaf Disease Detection with Real-Time Weather Alerts and Multilingual Chatbot Support for Farmers in India*
-
-[![View Publication](https://img.shields.io/badge/📄_View_Publication-Vesper_Journal-1a73e8?style=for-the-badge&labelColor=174ea6)](vesper09101423.pdf)
-
+Our research has been published in the **Vesper Journal (ISSN: 2704-7598)**—an internationally recognized, peer-reviewed journal.
 
 ### Publication Details
 
@@ -53,6 +41,14 @@ Our research has been published in the **Vesper Journal (ISSN: 2704-7598)**—an
 | **Research Domain** | AI in Agriculture |
 | **Type** | Original Research Article |
 | **Review Process** | Double-Blind Peer Review |
+
+<div align="center">
+### Published Research Article  
+**Title:** *AgroAI Assist: CNN-Based Leaf Disease Detection with Real-Time Weather Alerts and Multilingual Chatbot Support for Farmers in India*
+
+[![View Publication](https://img.shields.io/badge/📄_View_Publication-Vesper_Journal-1a73e8?style=for-the-badge&labelColor=174ea6)](vesper09101423.pdf)
+</div>
+
 
 
 ### Project Leadership 
@@ -117,12 +113,15 @@ EfficientNet-B3 was selected for its accuracy, computational efficiency, and sui
 
 ### 1. Authentication  
 - Login & Signup with validation  
-- JWT-based security system  
+- JWT-based security system
+<img width="400" height="200" alt="Signup" src="https://github.com/user-attachments/assets/b7ade2f2-9c43-42a0-84af-3c27ee2e1105" />
+<img width="400" height="200" alt="login" src="https://github.com/user-attachments/assets/ba47d74d-35a4-48ff-88e4-1b718d8a101b" />
+
 
 ### 2. Dashboard  
 Central hub showing detection stats, weather widget, and quick navigation.
 
-<img width="1337" src="https://github.com/user-attachments/assets/805bd804-6d45-484e-9d6c-2bad635ae82f" />
+<img width="400" src="https://github.com/user-attachments/assets/805bd804-6d45-484e-9d6c-2bad635ae82f" />
 
 ### 3. Disease Detection  
 - Image upload  
