@@ -16,7 +16,8 @@ The system bridges the gap between **advanced AI research** and **practical agri
 
 <img width="800" height="600" alt="Home Page" src="https://github.com/user-attachments/assets/b04b68fb-ca1a-4c40-a3c7-ea9ced50c64f" />
 
-### Project Leadership 
+
+## Project Leadership 
 Led by **Adhish Biju**, responsible for:  
 - End-to-end system development & project coordination  
 - EfficientNet CNN model development & training  
@@ -50,8 +51,8 @@ Our research has been published in the **Vesper Journal (ISSN: 2704-7598)**—an
 | **Review Process** | Double-Blind Peer Review |
 
 <div align="center">
-  
-### Published Research Article  
+
+## Published Research Article  
 **Title:** *AgroAI Assist: CNN-Based Leaf Disease Detection with Real-Time Weather Alerts and Multilingual Chatbot Support for Farmers in India*
 
 [![View Publication](https://img.shields.io/badge/📄_View_Publication-Vesper_Journal-1a73e8?style=for-the-badge&labelColor=174ea6)](vesper09101423.pdf)
@@ -112,14 +113,14 @@ EfficientNet-B3 was selected for its accuracy, computational efficiency, and sui
 ### 1. Authentication  
 - Login & Signup with validation  
 - JWT-based security system
-<img width="400" height="200" alt="Signup" src="https://github.com/user-attachments/assets/b7ade2f2-9c43-42a0-84af-3c27ee2e1105" />
-<img width="400" height="200" alt="login" src="https://github.com/user-attachments/assets/ba47d74d-35a4-48ff-88e4-1b718d8a101b" />
+<img width="800" height="600" alt="Signup" src="https://github.com/user-attachments/assets/b7ade2f2-9c43-42a0-84af-3c27ee2e1105" />
+<img width="800" height="600" alt="login" src="https://github.com/user-attachments/assets/ba47d74d-35a4-48ff-88e4-1b718d8a101b" />
 
 
 ### 2. Dashboard  
 Central hub showing detection stats, weather widget, and quick navigation.
 
-<img width="400" src="https://github.com/user-attachments/assets/805bd804-6d45-484e-9d6c-2bad635ae82f" />
+<img width="800" src="https://github.com/user-attachments/assets/805bd804-6d45-484e-9d6c-2bad635ae82f" />
 
 ### 3. Disease Detection  
 - Image upload  
@@ -134,10 +135,16 @@ Central hub showing detection stats, weather widget, and quick navigation.
 - 7-day forecast  
 - Alerts for humidity, rainfall, wind  
 
+<img width="1353" height="632" alt="Wheather" src="https://github.com/user-attachments/assets/dfa0a7ba-5e25-483d-935a-cfe14124fdd0" />
+<img width="1350" height="635" alt="Wheather 2" src="https://github.com/user-attachments/assets/b7652d3c-67a4-4636-a257-cfcd05537c41" />
+
 ### 5. Multilingual Chatbot  
 - Supports English, Hindi, Marathi, Tamil, Telugu  
 - Agricultural Q&A  
 - Context-aware responses  
+<img width="800" height="600" alt="ChatBot" src="https://github.com/user-attachments/assets/04cb1a92-28b6-44d3-9af0-e6bed234a77a" />
+
+![WhatsApp Image 2025-11-27 at 11 39 49_87471b55](https://github.com/user-attachments/assets/4180a62b-8746-4def-b607-2a64b055c6a6)
 
 ---
 
