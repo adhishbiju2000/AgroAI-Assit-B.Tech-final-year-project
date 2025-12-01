@@ -35,14 +35,12 @@ Our research has been published in the **Vesper Journal (ISSN: 2704-7598)**—an
 - **Web of Science**  
 - **UGC CARE Group II**
 
-<div=center>
 
 ### Published Research Article  
 **Title:** *AgroAI Assist: CNN-Based Leaf Disease Detection with Real-Time Weather Alerts and Multilingual Chatbot Support for Farmers in India*
 
 [![View Publication](https://img.shields.io/badge/📄_View_Publication-Vesper_Journal-1a73e8?style=for-the-badge&labelColor=174ea6)](vesper09101423.pdf)
 
-</div>
 
 ### Publication Details
 
@@ -91,7 +89,8 @@ The project follows a modular architecture consisting of:
 5. **Chatbot NLP Engine**  
 6. **Database Layer**
 
-![System Architecture](images/architecture.png)
+
+<img width="638" height="298" alt="Archtechture" src="https://github.com/user-attachments/assets/75c82d7a-1d88-4e1e-b91e-3a6f9031baa9" />
 
 ---
 
