@@ -110,14 +110,17 @@ EfficientNet-B3 was selected for its accuracy, computational efficiency, and sui
 
 ## Application Modules
 
-### 1. Authentication  
+## 1. Authentication  
 - Login & Signup with validation  
 - JWT-based security system
 <img width="800" height="600" alt="Signup" src="https://github.com/user-attachments/assets/b7ade2f2-9c43-42a0-84af-3c27ee2e1105" />
+
+### LOGIN page after the user singup with the new account
 <img width="800" height="600" alt="login" src="https://github.com/user-attachments/assets/ba47d74d-35a4-48ff-88e4-1b718d8a101b" />
 
 
-### 2. Dashboard  
+## 2. Dashboard  
+
 Central hub showing detection stats, weather widget, and quick navigation.
 
 <img width="800" src="https://github.com/user-attachments/assets/805bd804-6d45-484e-9d6c-2bad635ae82f" />
@@ -128,7 +131,8 @@ Central hub showing detection stats, weather widget, and quick navigation.
 - Confidence scores  
 - Recommendation engine  
 
-![Disease Detection](images/disease_detection.png)
+<img width="1035" height="480" alt="detection" src="https://github.com/user-attachments/assets/da984ec2-c10f-4d67-ad19-6762588f10a5" />
+
 
 ### 4. Weather Forecasting  
 - OpenWeatherMap API  
@@ -136,14 +140,17 @@ Central hub showing detection stats, weather widget, and quick navigation.
 - Alerts for humidity, rainfall, wind  
 
 <img width="1353" height="632" alt="Wheather" src="https://github.com/user-attachments/assets/dfa0a7ba-5e25-483d-935a-cfe14124fdd0" />
+
+### 5 Days weather Forcasting 
 <img width="1350" height="635" alt="Wheather 2" src="https://github.com/user-attachments/assets/b7652d3c-67a4-4636-a257-cfcd05537c41" />
 
-### 5. Multilingual Chatbot  
+## 5. Multilingual Chatbot  
 - Supports English, Hindi, Marathi, Tamil, Telugu  
 - Agricultural Q&A  
 - Context-aware responses  
 <img width="800" height="600" alt="ChatBot" src="https://github.com/user-attachments/assets/04cb1a92-28b6-44d3-9af0-e6bed234a77a" />
 
+### Multilingual chatbot for Farmers in India for Different Differnt Regional Langugae
 ![WhatsApp Image 2025-11-27 at 11 39 49_87471b55](https://github.com/user-attachments/assets/4180a62b-8746-4def-b607-2a64b055c6a6)
 
 ---
