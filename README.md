@@ -14,7 +14,7 @@ Agriculture faces major challenges including delayed disease detection, unpredic
   
 The system bridges the gap between **advanced AI research** and **practical agricultural needs**, making precision farming more accessible to rural users and makes advanced agricultural intelligence accessible to farmers, promoting early intervention and improved crop management.
 
-<img width="600" height="400" alt="Home Page" src="https://github.com/user-attachments/assets/b04b68fb-ca1a-4c40-a3c7-ea9ced50c64f" />
+<img width="600" height="500" alt="Home Page" src="https://github.com/user-attachments/assets/b04b68fb-ca1a-4c40-a3c7-ea9ced50c64f" />
 
 
 ## Project Overview 
