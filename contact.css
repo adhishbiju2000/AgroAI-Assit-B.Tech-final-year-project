@@ -1,0 +1,220 @@
+
+
+        /* body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f5f7;
+  }
+  .navbar {
+    background-color: #1d9c4e;
+    color: white;
+    padding: 0rem 0;
+  }
+  
+  .nav-container {
+    width: 100%;
+    padding:0%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .nav-right {
+    display: flex;
+    gap: 2rem;
+    margin-right: 4rem;
+  }
+  
+  .nav-left {
+    margin-left: 4rem;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+  }
+  
+  .nav-link:hover {
+    text-decoration: underline;
+  }
+  
+  .nav-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  } */
+
+  /* Toggle button styles - hidden on desktop */
+/* .nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+} */
+
+/* Responsive Styles */
+ /* @media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-right {
+    display: none; hide nav links on mobile by default
+    flex-direction: column;
+    width: 100%;
+    background-color: #1d9c4e;
+    position: absolute;
+    top: 60px; adjust based on navbar height
+    left: 0;
+    padding: 1rem 0;
+  }  */
+
+  /* Show menu when active */
+   /* .nav-right.active {
+    display: flex;
+  }  */
+
+  /* Optional: spacing for links in mobile menu */
+   /* .nav-link {
+    padding: 0.5rem 1rem;
+  }
+}  */
+  
+navbar.css
+
+  :root {
+            --primary-green: #16a34a;
+            --secondary-green: #15803d;
+            --dark-green: #14532d;
+            --light-green: #22c55e;
+            --accent-green: #84cc16;
+        }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+        }
+
+        .feature-card {
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .pulse-green {
+            animation: pulse-green 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse-green {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .8; }
+        }
+
+        .nav-glass {
+            background: rgba(22, 163, 74, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stats-counter {
+            font-weight: 700;
+            font-size: 2.5rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .mobile-menu {
+            background: rgba(22, 163, 74, 0.98);
+            backdrop-filter: blur(15px);
+        }
+  .container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+  
+  .title {
+    text-align: center;
+    color: #1a8f3c;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card p {
+    margin: 10px 0;
+  }
+  
+  .card h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .card ul {
+    padding-left: 20px;
+    margin: 0 0 20px 0;
+  }
+  
+  .card form input,
+  .card form textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+  
+  .card form button {
+    width: 100%;
+    background-color: #1a8f3c;
+    color: white;
+    padding: 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .card form button:hover {
+    background-color: #157a33;
+  }
+  /* Footer Styles */
+/* .footer {
+    background-color: #1d9c4e;
+    color: white;
+    text-align: center;
+    padding: 0.4rem;
+    margin-top: auto;
+  } */
+  

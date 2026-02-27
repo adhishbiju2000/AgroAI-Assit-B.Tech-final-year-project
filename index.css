@@ -1,0 +1,262 @@
+
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #1d9c4e;
+    color: white;
+    padding: 1rem 0;
+}
+
+.nav-container {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-right {
+    display: flex;
+    gap: 2rem;
+    margin-right: 4rem;
+}
+
+.nav-left {
+    margin-left: 4rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+.nav-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+/* Toggle button styles - hidden on desktop */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-right {
+    display: none; /* hide nav links on mobile by default */
+    flex-direction: column;
+    width: 100%;
+    background-color: #1d9c4e;
+    position: absolute;
+    top: 60px; /* adjust based on navbar height */
+    left: 0;
+    padding: 1rem 0;
+  }
+
+  /* Show menu when active */
+  .nav-right.active {
+    display: flex;
+  }
+
+  /* Optional: spacing for links in mobile menu */
+  .nav-link {
+    padding: 0.5rem 1rem;
+  }
+}
+/* Hero Section */
+.hero {
+    background-color: #137a3b;
+    padding: 4rem 1rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-container {
+    background-color: #0c6931;
+    color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 9000px;
+    width: 100%;
+}
+
+.hero-container h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.hero-container h4{
+    font-size: medium;
+    font-weight: 9rem;
+    font-weight:400;
+}
+
+.hero-container p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.hero-button {
+    background-color: white;
+    color: #0c6931;
+    padding: 0.75rem 2rem;
+    border-radius: 25px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.hero-button:hover {
+    background-color: #e2e2e2;
+}
+
+
+
+
+
+/* Banner Section */
+.simple-banner {
+    padding: 40px 0;
+    background-color: #f9f9f9;
+}
+.image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.centered-banner-image {
+    width: 80%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 40px;
+}
+
+/* Banner Content */
+.banner-content {
+    padding: 40px 20px;
+    background-color: #ffffff;
+    text-align: center;
+}
+.content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.banner-content h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #1b4332;
+}
+.banner-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Section Titles */
+.section-title {
+    text-align: center;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 2rem;
+}
+
+/* Crops Section */
+.crop-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 1240px;
+    margin: 0 auto;
+    justify-items: center; /* <-- added */
+}
+
+@media (min-width: 768px) {
+    .crop-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.crop-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    /* Optionally */
+    /* justify-self: center; */
+}
+
+.crop-card img {
+    display: block;
+    margin: 0 auto 1rem auto; /* top:0, left/right auto, bottom:1rem */
+    width: 8rem;
+    height: 8rem;
+    border-radius: 9999px;
+    object-fit: cover;
+}
+
+/* Features Section */
+.features-section {
+    background-color: #e5e7eb;
+    padding: 60px 20px;
+}
+.features-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
+@media (min-width: 768px) {
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+.feature-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+.feature-card img {
+    width: 100%;
+    max-width: 480px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 25px;
+    margin-bottom: 20px;
+}
+
+/* Footer */
+footer {
+    margin-top: 2rem;
+}

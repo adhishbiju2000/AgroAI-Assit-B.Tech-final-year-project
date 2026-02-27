@@ -1,0 +1,202 @@
+login.css
+/* General Styles */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+    /* This makes main content grow and pushes footer down */
+}
+
+/* Navbar */
+.navbar {
+    background-color: #1d9c4e;
+    color: white;
+    padding: 0rem 0;
+}
+
+.nav-container {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-right {
+    display: flex;
+    gap: 2rem;
+    margin-right: 4rem;
+}
+
+.nav-left {
+    margin-left: 4rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+.nav-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Toggle button styles - hidden on desktop */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-right {
+    display: none; /* hide nav links on mobile by default */
+    flex-direction: column;
+    width: 100%;
+    background-color: #1d9c4e;
+    position: absolute;
+    top: 60px; /* adjust based on navbar height */
+    left: 0;
+    padding: 1rem 0;
+  }
+
+  /* Show menu when active */
+  .nav-right.active {
+    display: flex;
+  }
+
+  /* Optional: spacing for links in mobile menu */
+  .nav-link {
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Auth Card */
+.auth-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.auth-title {
+    font-size: 28px;
+    color: #1d9c4e;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.auth-box {
+    max-width: 450px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.auth-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.auth-tab {
+    font-size: 20px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #6b7280;
+    border-bottom: 2px solid transparent;
+}
+
+.auth-tab.active {
+    color: #1d9c4e;
+    border-bottom: 2px solid #1d9c4e;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.auth-form h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #111827;
+}
+
+.auth-form label {
+    margin-bottom: 16px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.auth-form input {
+    padding: 14px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border-radius: 20px;
+    border: 1px solid #d1d5db;
+}
+
+.auth-form input:focus {
+    border: 2px solid #1d9c4e;
+    outline: none;
+    box-shadow: 0 0 5px rgba(29, 156, 78, 0.4);
+}
+
+.auth-form button {
+    padding: 14px;
+    background-color: #1d9c4e;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 18px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.auth-form button:hover {
+    background-color: #15803d;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #1d9c4e;
+    color: white;
+    text-align: center;
+    padding: 0.5rem;
+    margin-top: auto;
+}
