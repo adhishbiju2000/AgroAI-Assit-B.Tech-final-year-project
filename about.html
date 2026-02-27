@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroAI Assist - Smart Farming Solutions</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <style>
+        /* Color Variables */
+        :root {
+            --primary-green: #16a34a;
+            --secondary-green: #15803d;
+            --dark-green: #14532d;
+            --light-green: #22c55e;
+            --accent-green: #84cc16;
+            --green-50: #f0fdf4;
+            --green-100: #dcfce7;
+            --green-200: #bbf7d0;
+            --green-300: #86efac;
+            --green-400: #4ade80;
+            --green-500: #22c55e;
+            --green-600: #16a34a;
+            --green-700: #15803d;
+            --green-800: #166534;
+            --green-900: #14532d;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            scroll-behavior: smooth;
+            background-color: #f9fafb;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Utility Classes */
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+        }
+
+        .pulse-green {
+            animation: pulse-green 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse-green {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .8; }
+        }
+
+        /* Navbar Styles from irrigation.html */
+        .nav-glass {
+            background: rgba(22, 163, 74, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 50;
+            transition: all 0.3s ease;
+        }
+
+        .nav-glass.scrolled {
+            background: rgba(22, 163, 74, 0.98);
+            box-shadow: 0 8px 32px rgba(22, 163, 74, 0.2);
+        }
+
+        .mobile-menu {
+            background: rgba(22, 163, 74, 0.98);
+            backdrop-filter: blur(15px);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+        }
+
+        /* Navbar Loading Animation */
+        .navbar-loading {
+            opacity: 0;
+            transform: translateY(-100%);
+            animation: navbarSlideIn 0.6s ease forwards;
+        }
+
+        @keyframes navbarSlideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Content Styles */
+        .main-content {
+            flex: 1;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: white;
+            text-align: center;
+            padding: 120px 20px 80px;
+        }
+
+        .hero-container h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero-container h4 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #bbf7d0;
+        }
+
+        .hero-container p {
+            font-size: 1.1rem;
+            color: #dcfce7;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .stats-section {
+            background: white;
+            padding: 80px 20px;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(22, 163, 74, 0.1);
+        }
+
+        .stat-item i {
+            font-size: 3rem;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .mission {
+            background: #f9fafb;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .mission h3 {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .mission p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .testimonials {
+            background: white;
+            padding: 80px 20px;
+        }
+
+        .testimonials h3 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+
+        .testimonials-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            padding: 30px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(22, 163, 74, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .testimonial-content p {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .testimonial-author h5 {
+            color: var(--primary-green);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .testimonial-author span {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .team {
+            background: #f9fafb;
+            padding: 80px 20px;
+        }
+
+        .team h3 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+
+        .team-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .team-member {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            min-width: 250px;
+            flex: 0 0 auto;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto 20px auto;
+            border: 4px solid var(--green-200);
+            transition: transform 0.3s ease;
+        }
+
+        .team-member img:hover {
+            transform: scale(1.1);
+        }
+
+        .team-member h4 {
+            color: var(--primary-green);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .team-member p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .team-social a {
+            color: var(--primary-green);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .team-social a:hover {
+            color: var(--secondary-green);
+            transform: translateY(-2px);
+        }
+
+        .project-journey {
+            background: white;
+            padding: 80px 20px;
+        }
+
+        .project-journey h3 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 60px;
+            font-weight: 700;
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary-green), var(--secondary-green));
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-green);
+            border: 4px solid white;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            box-shadow: 0 0 20px rgba(22, 163, 74, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-dot {
+            background: var(--secondary-green);
+            transform: translateX(-50%) scale(1.2);
+            box-shadow: 0 0 30px rgba(22, 163, 74, 0.5);
+        }
+
+        .timeline-content {
+            width: calc(50% - 40px);
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(22, 163, 74, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: 40px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 40px;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border: 15px solid transparent;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -30px;
+            border-left-color: white;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -30px;
+            border-right-color: white;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary-green);
+        }
+
+        .timeline-content h4 {
+            color: var(--primary-green);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content span {
+            color: var(--secondary-green);
+            font-weight: 500;
+            font-size: 0.9rem;
+            background: var(--green-50);
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .timeline-content p {
+            color: #555;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Mobile Timeline Styles */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                flex-direction: row !important;
+                margin-bottom: 40px;
+            }
+
+            .timeline-dot {
+                left: 30px;
+                transform: translateX(-50%);
+            }
+
+            .timeline-content {
+                width: calc(100% - 80px);
+                margin-left: 60px !important;
+                margin-right: 0 !important;
+            }
+
+            .timeline-content::before {
+                left: -30px !important;
+                right: auto !important;
+                border-right-color: white !important;
+                border-left-color: transparent !important;
+            }
+
+            .project-journey h3 {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+
+            .timeline-content {
+                padding: 20px;
+            }
+
+            .timeline-content h4 {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Timeline Animation */
+        .timeline-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            color: white;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .footer-brand {
+            grid-column: span 1;
+        }
+
+        @media (min-width: 768px) {
+            .footer-brand {
+                grid-column: span 2;
+            }
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-logo i {
+            font-size: 1.5rem;
+            margin-right: 0.75rem;
+            animation: leafSway 3s ease-in-out infinite;
+        }
+
+        @keyframes leafSway {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .footer-logo h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .footer-description {
+            color: #bbf7d0;
+            margin-bottom: 1.5rem;
+            max-width: 28rem;
+            line-height: 1.6;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social-link {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: var(--green-700);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-social-link::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .footer-social-link:hover {
+            background: var(--green-800);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-social-link:hover::before {
+            width: 100%;
+            height: 100%;
+        }
+
+        .footer-section h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 2rem;
+            height: 2px;
+            background: #bbf7d0;
+            border-radius: 1px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #bbf7d0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-links a::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .footer-links a:hover::before {
+            width: 100%;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--green-700);
+            padding-top: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: #bbf7d0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-bottom .fa-heart {
+            color: #ef4444;
+            animation: heartbeat 2s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Additional Original Styles */
+        .feature-card {
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Accessibility and Responsive Enhancements */
+        @media (max-width: 767px) {
+            .hero {
+                padding: 80px 20px 60px;
+            }
+
+            .hero-container h2 {
+                font-size: 2.5rem;
+            }
+
+            .footer {
+                padding: 3rem 0;
+            }
+
+            .footer-grid {
+                gap: 2.5rem;
+            }
+
+            .footer-brand {
+                text-align: center;
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+        }
+
+        /* Focus States */
+        .navbar-link:focus,
+        .navbar-login:focus,
+        .mobile-menu-btn:focus,
+        .mobile-menu-link:focus,
+        .footer-social-link:focus,
+        .footer-links a:focus {
+            outline: 2px solid #bbf7d0;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar from irrigation.html -->
+    <nav class="nav-glass fixed w-full z-50 transition-all duration-300 navbar-loading">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-leaf text-white text-2xl mr-3"></i>
+                        <h1 class="text-white text-xl font-bold">AgroAI Assist</h1>
+                    </div>
+                </div>
+                
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="{{ url_for('home') }}" class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                        <a href="{{ url_for('about') }}" class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                        <a href="{{ url_for('contact') }}" class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
+                        <a href="{{ url_for('login_signup') }}" class="bg-white text-green-600 hover:bg-green-50 px-4 py-2 rounded-full text-sm font-medium transition-all">Login</a>
+                    </div>
+                </div>
+                
+                <div class="md:hidden">
+                    <button class="mobile-menu-btn text-white hover:text-green-200 p-2" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="{{ url_for('home') }}" class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                <a href="{{ url_for('about') }}" class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                <a href="{{ url_for('contact') }}" class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
+                <a href="{{ url_for('login_signup') }}" class="bg-white text-green-600 hover:bg-green-50 px-4 py-2 rounded-full text-sm font-medium transition-all">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Spacer for fixed navbar -->
+    <div class="pt-20"></div>
+
+    <!-- Main Content -->
+    <main class="main-content"><br><br>
+        <!-- Hero Section -->
+        <section id="home" class="gradient-bg relative overflow-hidden">
+            <div class="absolute inset-0 bg-black opacity-10"></div>
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="text-white space-y-8">
+                        <div class="space-y-4">
+                            <h1 class="text-4xl md:text-6xl font-bold leading-tight">
+                                AgroAI Assist<br>
+                                <span class="text-yellow-300">Our Mission</span>
+                            </h1>
+                            <p class="text-xl text-green-100 leading-relaxed">
+                                At AgroAI Assist, we aim to revolutionize agriculture by providing farmers with cutting-edge AI tools to monitor soil health, detect plant diseases, and receive real-time weather alerts. Our goal is to ensure sustainable farming practices and maximize crop yield for crops like tomatoes and potatoes, making precision agriculture accessible to farmers everywhere.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="floating-animation">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-gradient-to-r from-green-400 to-green-600 rounded-3xl transform rotate-6 opacity-20"></div>
+                            <img src="./static/images/Mission image.jpg" alt="AgroAI Dashboard" class="relative rounded-3xl shadow-2xl w-full h-96 object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Journey -->
+        <section class="project-journey">
+            <h3>Our Journey</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>Project Inception</h4>
+                        <span>January 2024</span>
+                        <p>Identified the need for AI-powered agricultural solutions after researching farmers' challenges.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>AI Model Development</h4>
+                        <span>March 2024</span>
+                        <p>Developed and trained deep learning models for disease detection using thousands of plant images.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>Platform Beta Launch</h4>
+                        <span>June 2024</span>
+                        <p>Launched beta version with core features and began testing with local farming communities.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>Full Platform Release</h4>
+                        <span>December 2024</span>
+                        <p>Released the complete platform with weather integration and mobile optimization.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <h3>What Farmers Say</h3>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"AgroAI Assist helped me detect early blight in my tomatoes before it spread. Saved my entire crop!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="./static/images/farmer1.jpg" alt="Farmer">
+                        <div>
+                            <h5>Rajesh Kumar</h5>
+                            <span>Tomato Farmer, Maharashtra</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The weather alerts are incredibly accurate. I can now plan my irrigation and pest control better."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="./static/images/farmer2.jpg" alt="Farmer">
+                        <div>
+                            <h5>Priya Sharma</h5>
+                            <span>Potato Farmer, Punjab</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Easy to use interface and instant results. This technology is a game-changer for small farmers."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="./static/images/farmer3.jpg" alt="Farmer">
+                        <div>
+                            <h5>Suresh Patel</h5>
+                            <span>Mixed Crop Farmer, Gujarat</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team">
+            <h3>Meet Our Team</h3>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="./static/images/Adhish Photo.jpg" alt="Adhish Biju">
+                    <h4>Adhish Biju</h4>
+                    <p>Software Developer</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="./static/images/Yash .jpg" alt="Karande Yash Vitthal">
+                    <h4>Karande Yash Vitthal</h4>
+                    <p>Data Scientist</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="./static/images/Yuvarj.PNG" alt="Kolekar Vyuraj Brahmadeo">
+                    <h4>Kolekar Vyuraj Brahmadeo</h4>
+                    <p>Frontend Developer</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="./static/images/Ashwin Baburaj.jpg" alt="Ashwin Baburaj">
+                    <h4>Ashwin Baburaj</h4>
+                    <p>Backend Developer</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <i class="fas fa-leaf"></i>
+                        <h3>AgroAI Assist</h3>
+                    </div>
+                    <p class="footer-description">
+                        Empowering farmers worldwide with AI-driven agricultural solutions. Join the smart farming revolution and increase your crop yield with intelligent technology.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="footer-social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="footer-social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="footer-social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="footer-social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#crops">Supported Crops</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>
+                    © 2025 AgroAI Assist. All rights reserved. Made with <i class="fas fa-heart"></i> for farmers worldwide.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle functionality
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.nav-glass');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.stat-item, .testimonial-card, .team-member, .timeline-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Timeline specific animation observer
+        const timelineObserver = new IntersectionObserver(function(entries) {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('animate');
+                    }, index * 200); // Stagger animation
+                }
+            });
+        }, { threshold: 0.3 });
+
+        // Observe timeline items
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            timelineObserver.observe(item);
+        });
+
+        // Counter animation for stats
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            
+            function updateCounter() {
+                start += increment;
+                if (start < target) {
+                    element.textContent = Math.floor(start).toLocaleString() + '+';
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target.toLocaleString() + '+';
+                }
+            }
+            
+            updateCounter();
+        }
+
+        // Animate counters when stats section is visible
+        const statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.stat-item h3');
+                    counters.forEach(counter => {
+                        const text = counter.textContent;
+                        const number = parseInt(text.replace(/[^0-9]/g, ''));
+                        if (number) {
+                            animateCounter(counter, number);
+                        }
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Add loading class removal after page load
+        window.addEventListener('load', function() {
+            const navbar = document.querySelector('.navbar-loading');
+            if (navbar) {
+                navbar.classList.remove('navbar-loading');
+            }
+        });
+    </script>
+</body>
+</html>

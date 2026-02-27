@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AgroAI Chatbot </title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.2.1/docx.browser.js"></script>
+  <style>
+    body {
+      background: #f6fdf6 url('https://www.transparenttextures.com/patterns/grass.png');
+    }
+    .glass {
+      backdrop-filter: blur(14px) saturate(160%);
+      -webkit-backdrop-filter: blur(14px) saturate(160%);
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      border: 1px solid rgba(34, 197, 94, 0.2);
+    }
+    .typing { display: flex; gap: 4px; justify-content: center; }
+    .dot {
+      width: 8px; height: 8px; background: #22c55e; border-radius: 50%;
+      animation: bounce 0.8s infinite alternate;
+    }
+    .dot:nth-child(2){ animation-delay:0.2s; }
+    .dot:nth-child(3){ animation-delay:0.4s; }
+    @keyframes bounce {
+      from { transform: translateY(0); opacity: 0.6; }
+      to { transform: translateY(-6px); opacity: 1; }
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-6">
+  <div class="glass max-w-3xl w-full p-8 shadow-xl">
+    <h1 class="text-4xl font-extrabold mb-2 text-center text-green-800">🌱 AgroAI Chatbot</h1>
+    <p class="text-center text-gray-600 mb-6">Ask your farming questions and get smart answers</p>
+
+    <!-- Text Input -->
+    <form id="textForm" class="flex gap-3 mb-6">
+      <input type="text" id="textInput" name="text"
+        class="flex-1 px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-400"
+        placeholder="✍️ Type your question..." autocomplete="off"/>
+      <button type="submit"
+        class="bg-green-600 text-white px-6 py-3 rounded-lg shadow hover:bg-green-700">
+        Ask
+      </button>
+    </form>
+
+    <!-- Audio Upload -->
+    <form id="audioForm" enctype="multipart/form-data" class="flex gap-3 mb-6">
+      <label for="audioInput" class="flex-1 border-2 border-dashed rounded-lg p-3 cursor-pointer text-gray-700">
+        🎤 <span id="fileLabel">Upload audio...</span>
+        <input type="file" id="audioInput" name="audio" accept="audio/*" hidden />
+      </label>
+      <button type="submit"
+        class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700">
+        Upload
+      </button>
+    </form>
+
+    <!-- Chat Response -->
+    <div id="result" class="hidden mt-4 bg-white p-5 rounded-xl shadow-inner border-l-4 border-green-600">
+      <h2 class="font-bold text-lg text-green-700 mb-2">🤖 Bot:</h2>
+      <div id="responseText" class="text-gray-800 mb-3 break-words"></div>
+      <div id="typingAnim" class="hidden">
+        <div class="typing"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+      </div>
+      <audio id="audioPlayer" controls class="w-full hidden mt-3 rounded-lg shadow"></audio>
+
+      <!-- Download -->
+      <div id="downloadSection" class="hidden mt-4">
+        <h3 class="font-semibold text-green-700 mb-2">⬇️ Download output</h3>
+        <div class="flex gap-3">
+          <button onclick="downloadFile('txt')" class="flex-1 bg-gray-800 hover:bg-gray-900 text-white py-2 rounded-lg">📄 TXT</button>
+          <button onclick="downloadFile('docx')" class="flex-1 bg-blue-700 hover:bg-blue-800 text-white py-2 rounded-lg">📑 DOCX</button>
+          <button onclick="downloadFile('pdf')" class="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg">📝 PDF</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const fileInput = document.getElementById('audioInput');
+    const fileLabel = document.getElementById('fileLabel');
+
+    fileInput.addEventListener('change', () => {
+      fileLabel.textContent = fileInput.files.length ? fileInput.files[0].name : 'Upload audio...';
+    });
+
+    document.getElementById('textForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const text = document.getElementById('textInput').value.trim();
+      if (!text) return;
+      const formData = new FormData();
+      formData.append('text', text);
+      await sendToServer(formData);
+    });
+
+    document.getElementById('audioForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const file = fileInput.files[0];
+      if (!file) return alert('Please select audio.');
+      const formData = new FormData();
+      formData.append('audio', file);
+      await sendToServer(formData);
+    });
+
+    async function sendToServer(formData) {
+      showTyping();
+      try {
+        const res = await fetch('/chat', { method: 'POST', body: formData });
+        const data = await res.json();
+        showResponse(data.text, data.voice);
+      } catch {
+        alert('Error connecting to server.');
+      }
+    }
+
+    function showTyping() {
+      document.getElementById('result').classList.remove('hidden');
+      document.getElementById('typingAnim').classList.remove('hidden');
+      document.getElementById('responseText').innerHTML = "";
+      document.getElementById('downloadSection').classList.add('hidden');
+    }
+
+    function showResponse(text, voiceUrl = null) {
+      document.getElementById('typingAnim').classList.add('hidden');
+      document.getElementById('responseText').innerHTML = text;
+      document.getElementById('downloadSection').classList.remove('hidden');
+
+      const audioPlayer = document.getElementById('audioPlayer');
+      if (voiceUrl) {
+        audioPlayer.src = voiceUrl;
+        audioPlayer.classList.remove('hidden');
+      } else {
+        audioPlayer.classList.add('hidden');
+      }
+    }
+
+    async function downloadFile(type) {
+      const textPlain = document.getElementById("responseText").innerText || "No answer";
+
+      if (type === 'txt') {
+        // ✅ TXT Export
+        const blob = new Blob([textPlain], { type: "text/plain;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url; link.download = "chatbot_answer.txt"; link.click();
+        URL.revokeObjectURL(url);
+
+      } else if (type === 'docx') {
+        // ✅ DOCX Export
+        const { Document, Packer, Paragraph, TextRun } = docx;
+
+        const paragraphs = textPlain.split("\n").map(line => 
+          new Paragraph({
+            children: [new TextRun(line)],
+            spacing: { after: 200 }
+          })
+        );
+
+        const doc = new Document({
+          sections: [{ properties: {}, children: paragraphs }]
+        });
+
+        const blob = await Packer.toBlob(doc);
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url; link.download = "chatbot_answer.docx"; link.click();
+        URL.revokeObjectURL(url);
+
+      } else if (type === 'pdf') {
+        // ✅ PDF Export
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ orientation: "p", unit: "mm", format: "a4" });
+
+        const lines = textPlain.split("\n");
+        let y = 20;
+
+        doc.setFont("times", "normal");
+        doc.setFontSize(12);
+
+        lines.forEach(line => {
+          const wrapped = doc.splitTextToSize(line, 180);
+          doc.text(wrapped, 15, y);
+          y += (wrapped.length * 7);
+
+          if (y > 280) { 
+            doc.addPage();
+            y = 20;
+          }
+        });
+
+        doc.save("chatbot_answer.pdf");
+      }
+    }
+  </script>
+</body>
+</html>

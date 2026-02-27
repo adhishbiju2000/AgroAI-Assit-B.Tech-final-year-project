@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroAI Assist</title>
+     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/detail.css') }}">
+
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <span class="nav-title">🌱 AgroAI Assist</span>
+            </div>
+            <div class="nav-right">
+                <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+                <a href="{{ url_for('about') }}" class="nav-link">About</a>
+                <a href="{{ url_for('details') }}" class="nav-link">Details</a>
+                <a href="{{ url_for('contact') }}" class="nav-link">Contact</a>
+                <a href="{{ url_for('login_signup') }}" class="nav-link">Login/Sign Up</a>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="container">
+            <h1 class="heading">Intelligent Farming Solutions</h1>
+            <p class="intro">Harness the power of artificial intelligence to transform your farming practices and maximize your agricultural potential.</p>
+            
+            <div class="feature-grid">
+                <div class="feature">
+                    <div class="icon">🩺</div>
+                    <div class="text">
+                        <h2>AI Disease Detection</h2>
+                        <p>Upload leaf images and get instant disease identification with 95% accuracy. Early detection saves crops and increases yield.</p>
+                        <ul>
+                            <li>✔ Real-time analysis</li>
+                            <li>✔ Treatment recommendations</li>
+                            <li>✔ Prevention strategies</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="icon">🌿</div>
+                    <div class="text">
+                        <h2>Soil Analysis</h2>
+                        <p>Comprehensive soil health monitoring with nutrient analysis, pH levels, and moisture content tracking.</p>
+                        <ul>
+                            <li>✔ Nutrient mapping</li>
+                            <li>✔ pH monitoring</li>
+                            <li>✔ Fertilizer recommendations</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="icon">☁️</div>
+                    <div class="text">
+                        <h2>Weather Intelligence</h2>
+                        <p>Advanced weather forecasting with alerts for optimal planting, harvesting, and protection.</p>
+                        <ul>
+                            <li>✔ 7-day forecasts</li>
+                            <li>✔ Risk alerts</li>
+                            <li>✔ Irrigation scheduling</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="icon">📈</div>
+                    <div class="text">
+                        <h2>Growth Tracking</h2>
+                        <p>Monitor crop growth stages, predict harvest times, and optimize resource allocation for maximum yield.</p>
+                        <ul>
+                            <li>✔ Growth stage detection</li>
+                            <li>✔ Yield prediction</li>
+                            <li>✔ Resource optimization</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="icon">💧</div>
+                    <div class="text">
+                        <h2>Smart Irrigation</h2>
+                        <p>Automated irrigation recommendations based on soil moisture, weather conditions, and crop requirements.</p>
+                        <ul>
+                            <li>✔ Water conservation</li>
+                            <li>✔ Automated scheduling</li>
+                            <li>✔ Cost reduction</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="icon">🤖</div>
+                    <div class="text">
+                        <h2>AI Farm Assistant</h2>
+                        <p>24/7 AI-powered assistant providing instant answers to farming questions and personalized recommendations.</p>
+                        <ul>
+                            <li>✔ Instant support</li>
+                            <li>✔ Expert knowledge</li>
+                            <li>✔ Multilingual support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 AgroAI Assist. All rights reserved.</p>
+    </footer>
+</body>
+</html>

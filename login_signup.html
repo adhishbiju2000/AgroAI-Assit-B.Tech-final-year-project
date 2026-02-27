@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agro AI Assist - Login & Sign Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <style>
+        :root {
+            --primary-green: #16a34a;
+            --secondary-green: #15803d;
+            --dark-green: #14532d;
+            --light-green: #22c55e;
+            --accent-green: #84cc16;
+        }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+        }
+
+        .feature-card {
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .pulse-green {
+            animation: pulse-green 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse-green {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .8; }
+        }
+
+        .nav-glass {
+            background: rgba(22, 163, 74, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stats-counter {
+            font-weight: 700;
+            font-size: 2.5rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .mobile-menu {
+            background: rgba(22, 163, 74, 0.98);
+            backdrop-filter: blur(15px);
+        }
+
+        /* Auth specific styles */
+        .auth-container {
+            min-height: calc(100vh - 200px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        .auth-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .auth-tab {
+            transition: all 0.3s ease;
+        }
+
+        .auth-tab.active {
+            color: var(--primary-green);
+            border-color: var(--primary-green);
+        }
+
+        .auth-input {
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+
+        .auth-input:focus {
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+        }
+
+        .auth-btn {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            transition: all 0.3s ease;
+        }
+
+        /* Flash Message Animation */
+        .flash-message {
+            animation: slideInFromTop 0.5s ease-out;
+        }
+
+        @keyframes slideInFromTop {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .flash-success {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            border: 2px solid #22c55e;
+            color: #15803d;
+        }
+
+        .flash-error {
+            background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+            border: 2px solid #ef4444;
+            color: #dc2626;
+        }
+
+        .flash-info {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 2px solid #3b82f6;
+            color: #1d4ed8;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Enhanced Navbar -->
+    <nav class="nav-glass fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-leaf text-white text-2xl mr-3"></i>
+                        <h1 class="text-white text-xl font-bold">AgroAI Assist</h1>
+                    </div>
+                </div>
+                
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="{{ url_for('home') }}" class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                        <a href="{{ url_for('about') }}" class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                        <a href="{{ url_for('contact') }}" class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
+                        <a href="{{ url_for('login_signup') }}" class="bg-white text-green-600 hover:bg-green-50 px-4 py-2 rounded-full text-sm font-medium transition-all">Login</a>
+                    </div>
+                </div>
+                
+                <div class="md:hidden">
+                    <button class="mobile-menu-btn text-white hover:text-green-200 p-2" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="{{ url_for('home') }}" class="text-white hover:text-green-200 block px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                <a href="{{ url_for('about') }}" class="text-white hover:text-green-200 block px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                <a href="{{ url_for('contact') }}" class="text-white hover:text-green-200 block px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
+                <a href="{{ url_for('login_signup') }}" class="bg-white text-green-600 hover:bg-green-50 block px-4 py-2 rounded-full text-sm font-medium transition-all mx-3 mt-2 text-center">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Auth Section -->
+    <section class="auth-container pt-20">
+        <div class="w-full max-w-md mx-auto px-4">
+            <h2 class="text-4xl font-bold mb-8 text-center text-green-600">Welcome to AgroAI Assist</h2>
+            <div class="auth-card p-8 rounded-2xl">
+
+
+                <!-- Tabs -->
+                <div class="flex justify-center mb-8 border-b border-gray-200">
+                    <button id="login-tab" class="auth-tab px-6 py-3 font-semibold text-green-600 border-b-2 border-green-600 transition-all">Login</button>
+                    <button id="signup-tab" class="auth-tab px-6 py-3 font-semibold text-gray-600 border-b-2 border-transparent transition-all">Sign Up</button>
+                </div>
+
+                <!-- Login Form -->
+                <form id="login-form" class="form-content" action="{{ url_for('login_signup') }}" method="POST">
+                    <input type="hidden" name="form_type" value="login">
+                    <h3 class="text-2xl font-semibold mb-6 text-center text-gray-800">Login to Your Account</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <label for="login-email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                            <input type="email" id="login-email" name="email" class="auth-input w-full p-4 border rounded-xl focus:outline-none" placeholder="Enter your email" required>
+                        </div>
+                        <div>
+                            <label for="login-password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                            <input type="password" id="login-password" name="password" class="auth-input w-full p-4 border rounded-xl focus:outline-none" placeholder="Enter your password" required>
+                        </div>
+                        <button type="submit" class="auth-btn w-full text-white py-4 rounded-xl font-semibold text-lg">
+                            <i class="fas fa-sign-in-alt mr-2"></i>
+                            Login
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Sign-Up Form -->
+                <form id="signup-form" class="form-content hidden" action="{{ url_for('login_signup') }}" method="POST">
+                    <input type="hidden" name="form_type" value="signup">
+                    <h3 class="text-2xl font-semibold mb-6 text-center text-gray-800">Create an Account</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <label for="signup-username" class="block text-sm font-medium text-gray-700 mb-2">Username</label>
+                            <input type="text" id="signup-username" name="username" class="auth-input w-full p-4 border rounded-xl focus:outline-none" placeholder="Choose a username" required>
+                        </div>
+                        <div>
+                            <label for="signup-email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                            <input type="email" id="signup-email" name="email" class="auth-input w-full p-4 border rounded-xl focus:outline-none" placeholder="Enter your email" required>
+                        </div>
+                        <div>
+                            <label for="signup-password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                            <input type="password" id="signup-password" name="password" class="auth-input w-full p-4 border rounded-xl focus:outline-none" placeholder="Create a password" required>
+                        </div>
+                        <div>
+                            <label for="signup-confirm-password" class="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+                            <input type="password" id="signup-confirm-password" name="confirm_password" class="auth-input w-full p-4 border rounded-xl focus:outline-none" placeholder="Confirm your password" required>
+                        </div>
+                        <button type="submit" class="auth-btn w-full text-white py-4 rounded-xl font-semibold text-lg">
+                            <i class="fas fa-user-plus mr-2"></i>
+                            Create Account
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Footer -->
+    <footer class="gradient-bg text-white py-16 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-leaf text-2xl mr-3"></i>
+                        <h3 class="text-2xl font-bold">AgroAI Assist</h3>
+                    </div>
+                    <p class="text-green-100 mb-6 max-w-md">
+                        Empowering farmers worldwide with AI-driven agricultural solutions. Join the smart farming revolution and increase your crop yield with intelligent technology.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-green-700 rounded-full flex items-center justify-center hover:bg-green-800 transition-all">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-green-700 rounded-full flex items-center justify-center hover:bg-green-800 transition-all">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-green-700 rounded-full flex items-center justify-center hover:bg-green-800 transition-all">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-green-700 rounded-full flex items-center justify-center hover:bg-green-800 transition-all">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-green-100 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#features" class="text-green-100 hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#crops" class="text-green-100 hover:text-white transition-colors">Supported Crops</a></li>
+                        <li><a href="#about" class="text-green-100 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#contact" class="text-green-100 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Support</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-green-100 hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="text-green-100 hover:text-white transition-colors">Documentation</a></li>
+                        <li><a href="#" class="text-green-100 hover:text-white transition-colors">API Reference</a></li>
+                        <li><a href="#" class="text-green-100 hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-green-100 hover:text-white transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-green-700 pt-8 mt-12 text-center">
+                <p class="text-green-100">
+                    © 2025 AgroAI Assist. All rights reserved. Made with <i class="fas fa-heart text-red-400"></i> for farmers worldwide.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Tab Switching and Mobile Menu -->
+    <script>
+        // Tab switching functionality
+        const loginTab = document.getElementById('login-tab');
+        const signupTab = document.getElementById('signup-tab');
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+
+        loginTab.addEventListener('click', () => {
+            loginTab.classList.add('text-green-600', 'border-green-600');
+            loginTab.classList.remove('text-gray-600', 'border-transparent');
+            signupTab.classList.remove('text-green-600', 'border-green-600');
+            signupTab.classList.add('text-gray-600', 'border-transparent');
+            loginForm.classList.remove('hidden');
+            signupForm.classList.add('hidden');
+        });
+
+        signupTab.addEventListener('click', () => {
+            signupTab.classList.add('text-green-600', 'border-green-600');
+            signupTab.classList.remove('text-gray-600', 'border-transparent');
+            loginTab.classList.remove('text-green-600', 'border-green-600');
+            loginTab.classList.add('text-gray-600', 'border-transparent');
+            signupForm.classList.remove('hidden');
+            loginForm.classList.add('hidden');
+        });
+
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuButton = document.querySelector('.mobile-menu-btn');
+            
+            if (!mobileMenu.contains(event.target) && !menuButton.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

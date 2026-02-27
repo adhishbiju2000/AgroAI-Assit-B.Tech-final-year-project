@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroAI Assist - Irrigation Planning</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <style>
+        /* CSS Variables from navb.css */
+        :root {
+            --primary-green: #16a34a;
+            --secondary-green: #15803d;
+            --dark-green: #14532d;
+            --light-green: #22c55e;
+            --accent-green: #84cc16;
+        }
+
+        /* Reset & Base */
+        html, body {
+            margin: 0;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background-color: #f9fafb;
+            color: #2d3748;
+            scroll-behavior: smooth;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navbar Styles from navb.css */
+        .nav-glass {
+            background: rgba(22, 163, 74, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu {
+            background: rgba(22, 163, 74, 0.98);
+            backdrop-filter: blur(15px);
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+        }
+
+        .pulse-green {
+            animation: pulse-green 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse-green {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .8; }
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            width: 90%;
+            margin: 2.5rem auto;
+            padding: 0 1rem;
+            flex: 1;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .page-title {
+            color: #137a3b;
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-subtitle {
+            color: #4a5568;
+            font-size: 1.125rem;
+            font-weight: 500;
+        }
+
+        /* Feature Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem 1.8rem;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(29, 156, 78, 0.15);
+            text-align: center;
+            cursor: default;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(29, 156, 78, 0.25);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: #1d9c4e;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .card-description {
+            font-size: 1rem;
+            color: #4a5568;
+        }
+
+        /* Planning Tool */
+        .planning-tool {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(29, 156, 78, 0.12);
+            margin-bottom: 3rem;
+        }
+
+        .tool-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .tool-title {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #1d9c4e;
+            margin-bottom: 0.8rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #134d2e;
+        }
+
+        .form-select,
+        .form-input {
+            width: 100%;
+            padding: 0.65rem 1rem;
+            border-radius: 8px;
+            border: 1.5px solid #a0aec0;
+            font-size: 1rem;
+            color: #2d3748;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-select:focus,
+        .form-input:focus {
+            outline: none;
+            border-color: #1d9c4e;
+            box-shadow: 0 0 6px rgba(29, 156, 78, 0.4);
+        }
+
+        .form-input::placeholder {
+            color: #a0aec0;
+        }
+
+      .calculate-btn {
+    width: 100%;
+    max-width: 300px;
+    padding: 0.85rem;
+    background-color: #1d9c4e;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Example shadow */
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+        .calculate-btn:hover {
+            background-color: #15803d;
+        }
+
+        /* Results Section */
+        .results {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            margin-top: 2rem;
+        }
+
+        .results.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .result-item {
+            background-color: #f7fafc;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .result-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #234d20;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-label {
+            font-size: 1rem;
+            color: #4a5568;
+        }
+
+        /* Tips Section */
+        .tips-section {
+            margin-top: 3rem;
+        }
+
+        .tips-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1d9c4e;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .tip {
+            display: flex;
+            align-items: flex-start;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(29, 156, 78, 0.1);
+        }
+
+        .tip-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+
+        .tip-content h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1d9c4e;
+            margin-bottom: 0.5rem;
+        }
+
+        .tip-content p {
+            font-size: 1rem;
+            color: #4a5568;
+        }
+
+        /* Responsive Tweaks */
+        @media (max-width: 768px) {
+            .cards-grid,
+            .form-grid,
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+            .page-title {
+                font-size: 1.8rem;
+            }
+            .tool-title {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .main-content {
+                margin: 1.5rem auto;
+                padding: 0 0.5rem;
+            }
+            .result-item {
+                padding: 0.8rem;
+            }
+            .result-value {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <!-- Navbar from Provided HTML -->
+    <nav class="nav-glass fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-leaf text-white text-2xl mr-3"></i>
+                        <h1 class="text-white text-xl font-bold">AgroAI Assist</h1>
+                    </div>
+                </div>
+                
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                 
+                        <a href="{{ url_for('irrigation') }}" class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">Dashboard</a>  
+                        <a href="{{ url_for('weather') }}" class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">Weather</a>
+                        <a href="{{ url_for('dashboard') }}" class="bg-white text-green-600 hover:bg-green-50 px-4 py-2 rounded-full text-sm font-medium transition-all">Irrigation</a>
+                        <a href="{{ url_for('contact') }}" class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
+                        <a href="{{ url_for('login_signup') }}" class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">Logout</a>
+                    </div>
+                </div>
+                
+                <div class="md:hidden">
+                    <button class="mobile-menu-btn text-white hover:text-green-200 p-2" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                                        <a href="{{ url_for('irrigation') }}" class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">Dashboard</a>  
+                        <a href="{{ url_for('weather') }}" class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">Weather</a>
+                        <a href="{{ url_for('dashboard') }}" class="bg-white text-green-600 hover:bg-green-50 px-4 py-2 rounded-full text-sm font-medium transition-all">Irrigation</a>
+                        <a href="{{ url_for('contact') }}" class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
+                        <a href="{{ url_for('login_signup') }}" class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Spacer for fixed navbar -->
+    <div class="pt-20"></div>
+
+    <!-- Main Content (Unchanged) -->
+    <main class="main-content flex-1">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1 class="page-title">🌱 Smart Irrigation Planning</h1>
+                <p class="page-subtitle">Optimize water usage and maximize crop yield with AI-powered irrigation insights</p>
+            </div>
+
+            <!-- Feature Cards -->
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">💧</div>
+                    <h3 class="card-title">Water Need Calculator</h3>
+                    <p class="card-description">Calculate exact water requirements based on your crop type, soil condition, and weather patterns for optimal growth.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📅</div>
+                    <h3 class="card-title">Smart Scheduling</h3>
+                    <p class="card-description">Get personalized irrigation schedules that adapt to weather forecasts and soil moisture levels automatically.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">⚡</div>
+                    <h3 class="card-title">Efficiency Tracking</h3>
+                    <p class="card-description">Monitor water usage efficiency and get recommendations to reduce waste while maintaining healthy crops.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🌤️</div>
+                    <h3 class="card-title">Weather Integration</h3>
+                    <p class="card-description">Automatic adjustments based on rainfall predictions and temperature changes to save water and money.</p>
+                </div>
+            </div>
+
+            <!-- Interactive Planning Tool -->
+            <div class="planning-tool">
+                <div class="tool-header">
+                    <h2 class="tool-title">Calculate Your Irrigation Needs</h2>
+                    <p>Enter your farm details below to get personalized irrigation recommendations</p>
+                </div>
+
+                <form id="irrigation-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Crop Type</label>
+                            <select class="form-select" id="crop-type" required>
+                                <option value="">Select Crop</option>
+                                <option value="tomato">Tomato</option>
+                                <option value="potato">Potato</option>
+                                <option value="wheat">Wheat</option>
+                                <option value="rice">Rice</option>
+                                <option value="maize">Maize</option>
+                                <option value="cotton">Cotton</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Field Size (Acres)</label>
+                            <input type="number" class="form-input" id="field-size" placeholder="e.g., 2.5" min="0.1" step="0.1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Soil Type</label>
+                            <select class="form-select" id="soil-type" required>
+                                <option value="">Select Soil Type</option>
+                                <option value="clay">Clay</option>
+                                <option value="sandy">Sandy</option>
+                                <option value="loamy">Loamy</option>
+                                <option value="silt">Silt</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Growth Stage</label>
+                            <select class="form-select" id="growth-stage" required>
+                                <option value="">Select Stage</option>
+                                <option value="seedling">Seedling</option>
+                                <option value="vegetative">Vegetative</option>
+                                <option value="flowering">Flowering</option>
+                                <option value="fruiting">Fruiting/Maturity</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Average Temperature (°C)</label>
+                            <input type="number" class="form-input" id="temperature" placeholder="e.g., 28" min="0" max="50" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Humidity (%)</label>
+                            <input type="number" class="form-input" id="humidity" placeholder="e.g., 65" min="0" max="100" required>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="calculate-btn">Calculate Irrigation Plan</button>
+                    </div>
+                </form>
+
+                <!-- Results Section -->
+                <div id="results" class="results">
+                    <h3 class="text-center text-[#1c8b36] mb-6">Your Irrigation Recommendations</h3>
+                    <div class="results-grid">
+                        <div class="result-item">
+                            <span id="daily-water" class="result-value">-</span>
+                            <span class="result-label">Liters per Day</span>
+                        </div>
+                        <div class="result-item">
+                            <span id="irrigation-frequency" class="result-value">-</span>
+                            <span class="result-label">Times per Week</span>
+                        </div>
+                        <div class="result-item">
+                            <span id="duration" class="result-value">-</span>
+                            <span class="result-label">Minutes per Session</span>
+                        </div>
+                        <div class="result-item">
+                            <span id="best-time" class="result-value">-</span>
+                            <span class="result-label">Best Time</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tips Section -->
+            <div class="tips-section">
+                <h3 class="tips-title">💡 Smart Irrigation Tips for Farmers</h3>
+                <div class="tips-grid">
+                    <div class="tip">
+                        <span class="tip-icon">🕐</span>
+                        <div class="tip-content">
+                            <h4>Best Timing</h4>
+                            <p>Water early morning (5-8 AM) or evening (6-8 PM) to reduce evaporation and ensure better absorption.</p>
+                        </div>
+                    </div>
+
+                    <div class="tip">
+                        <span class="tip-icon">🌡️</span>
+                        <div class="tip-content">
+                            <h4>Monitor Soil Moisture</h4>
+                            <p>Check soil moisture 2-3 inches deep. If it's dry, it's time to water. Avoid over-watering as it can damage roots.</p>
+                        </div>
+                    </div>
+
+                    <div class="tip">
+                        <span class="tip-icon">💰</span>
+                        <div class="tip-content">
+                            <h4>Save Water & Money</h4>
+                            <p>Use drip irrigation or sprinklers to reduce water waste by 30-50% compared to flood irrigation methods.</p>
+                        </div>
+                    </div>
+
+                    <div class="tip">
+                        <span class="tip-icon">🌧️</span>
+                        <div class="tip-content">
+                            <h4>Weather Awareness</h4>
+                            <p>Skip watering before expected rainfall. Use weather forecasts to adjust your irrigation schedule automatically.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer from Provided HTML -->
+    <footer class="gradient-bg text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-leaf text-2xl mr-3"></i>
+                        <h3 class="text-2xl font-bold">AgroAI Assist</h3>
+                    </div>
+                    <p class="text-green-100 mb-6 max-w-md">
+                        Empowering farmers worldwide with AI-driven agricultural solutions. Join the smart farming revolution and increase your crop yield with intelligent technology.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-green-700 rounded-full flex items-center justify-center hover:bg-green-800 transition-all">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-green-700 rounded-full flex items-center justify-center hover:bg-green-800 transition-all">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-green-700 rounded-full flex items-center justify-center hover:bg-green-800 transition-all">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-green-700 rounded-full flex items-center justify-center hover:bg-green-800 transition-all">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-green-100 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#features" class="text-green-100 hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#crops" class="text-green-100 hover:text-white transition-colors">Supported Crops</a></li>
+                        <li><a href="#about" class="text-green-100 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#contact" class="text-green-100 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Support</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-green-100 hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="text-green-100 hover:text-white transition-colors">Documentation</a></li>
+                        <li><a href="#" class="text-green-100 hover:text-white transition-colors">API Reference</a></li>
+                        <li><a href="#" class="text-green-100 hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-green-100 hover:text-white transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-green-700 pt-8 mt-12 text-center">
+                <p class="text-green-100">
+                    © 2025 AgroAI Assist. All rights reserved. Made with <i class="fas fa-heart text-red-400"></i> for farmers worldwide.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Irrigation calculation logic
+        const cropWaterRequirements = {
+            tomato: { base: 4, stages: { seedling: 0.6, vegetative: 0.8, flowering: 1.2, fruiting: 1.0 } },
+            potato: { base: 3.5, stages: { seedling: 0.5, vegetative: 0.9, flowering: 1.3, fruiting: 1.1 } },
+            wheat: { base: 3, stages: { seedling: 0.4, vegetative: 0.7, flowering: 1.4, fruiting: 0.8 } },
+            rice: { base: 8, stages: { seedling: 0.8, vegetative: 1.2, flowering: 1.5, fruiting: 1.0 } },
+            maize: { base: 4, stages: { seedling: 0.5, vegetative: 0.8, flowering: 1.3, fruiting: 1.0 } },
+            cotton: { base: 5, stages: { seedling: 0.6, vegetative: 0.9, flowering: 1.4, fruiting: 1.2 } }
+        };
+
+        const soilFactors = {
+            clay: 0.8,
+            sandy: 1.3,
+            loamy: 1.0,
+            silt: 0.9
+        };
+
+        document.getElementById('irrigation-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const cropType = document.getElementById('crop-type').value;
+            const fieldSize = parseFloat(document.getElementById('field-size').value);
+            const soilType = document.getElementById('soil-type').value;
+            const growthStage = document.getElementById('growth-stage').value;
+            const temperature = parseInt(document.getElementById('temperature').value);
+            const humidity = parseInt(document.getElementById('humidity').value);
+
+            if (!cropType || !fieldSize || !soilType || !growthStage || !temperature || !humidity) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            // Calculate water requirements
+            const crop = cropWaterRequirements[cropType];
+            const baseWater = crop.base * crop.stages[growthStage];
+            const soilAdjustment = soilFactors[soilType];
+            const tempAdjustment = temperature > 30 ? 1.2 : temperature < 20 ? 0.8 : 1.0;
+            const humidityAdjustment = humidity < 50 ? 1.3 : humidity > 80 ? 0.7 : 1.0;
+
+            const dailyWaterPerAcre = baseWater * soilAdjustment * tempAdjustment * humidityAdjustment;
+            const totalDailyWater = (dailyWaterPerAcre * fieldSize * 1000).toFixed(0); // Convert to liters
+
+            // Calculate frequency and duration
+            const frequency = dailyWaterPerAcre > 5 ? 7 : dailyWaterPerAcre > 3 ? 4 : 3;
+            const duration = Math.round((totalDailyWater / frequency) / 50); // Assuming 50L per minute flow rate
+
+            // Best time based on temperature
+            const bestTime = temperature > 32 ? "5:00 AM" : temperature > 25 ? "6:00 AM" : "7:00 AM";
+
+            // Display results
+            document.getElementById('daily-water').textContent = totalDailyWater;
+            document.getElementById('irrigation-frequency').textContent = frequency;
+            document.getElementById('duration').textContent = duration;
+            document.getElementById('best-time').textContent = bestTime;
+
+            document.getElementById('results').classList.add('show');
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Navbar JavaScript
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                navbar.classList.add('bg-opacity-95');
+            } else {
+                navbar.classList.remove('bg-opacity-95');
+            }
+        });
+    </script>
+</body>
+</html>

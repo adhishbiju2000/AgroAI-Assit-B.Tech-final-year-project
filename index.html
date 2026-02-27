@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroAI Assist - Smart Farming Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <style>
+        :root {
+            --primary-green: #16a34a;
+            --secondary-green: #15803d;
+            --dark-green: #14532d;
+            --light-green: #22c55e;
+            --accent-green: #84cc16;
+        }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+        }
+
+        .feature-card {
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .pulse-green {
+            animation: pulse-green 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse-green {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .8; }
+        }
+
+        .nav-glass {
+            background: rgba(22, 163, 74, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stats-counter {
+            font-weight: 700;
+            font-size: 2.5rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .mobile-menu {
+            background: rgba(22, 163, 74, 0.98);
+            backdrop-filter: blur(15px);
+        }
+
+        /* Chatbot Styles */
+        .chatbot-container {
+            position: fixed;
+            bottom: 90px;
+            right: 24px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-window {
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(22, 163, 74, 0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: scale(0);
+            transform-origin: bottom right;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-window.open {
+            transform: scale(1);
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            animation: messageSlide 0.3s ease;
+        }
+
+        @keyframes messageSlide {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.bot {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #14532d;
+            align-self: flex-start;
+        }
+
+        .message.user {
+            background: var(--primary-green);
+            color: white;
+            align-self: flex-end;
+        }
+
+        .chatbot-input {
+            padding: 20px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 25px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .chatbot-input input:focus {
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+        }
+
+        .send-button {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .send-button:hover {
+            background: var(--secondary-green);
+            transform: scale(1.1);
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 12px 16px;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 18px;
+            align-self: flex-start;
+            max-width: 80px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            animation: typingBounce 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .quick-action {
+            background: white;
+            border: 1px solid var(--primary-green);
+            color: var(--primary-green);
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quick-action:hover {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        .chat-toggle {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 8px 24px rgba(22, 163, 74, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chat-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 32px rgba(22, 163, 74, 0.4);
+        }
+
+        .chat-toggle::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .chatbot-window {
+                width: 320px;
+                height: 450px;
+            }
+            
+            .chatbot-container {
+                bottom: 80px;
+                right: 16px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Enhanced Navbar -->
+    <nav class="nav-glass fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-leaf text-white text-2xl mr-3"></i>
+                        <h1 class="text-white text-xl font-bold">AgroAI Assist</h1>
+                    </div>
+                </div>
+                
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="{{ url_for('home') }}" class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                        <a href="{{ url_for('about') }}" class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                        <a href="{{ url_for('contact') }}" class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
+                        <a href="{{ url_for('login_signup') }}" class="bg-white text-green-600 hover:bg-green-50 px-4 py-2 rounded-full text-sm font-medium transition-all">Login</a>
+                    </div>
+                </div>
+                
+                <div class="md:hidden">
+                    <button class="mobile-menu-btn text-white hover:text-green-200 p-2" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                 <a href="{{ url_for('home') }}" class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                        <a href="{{ url_for('about') }}" class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                        <a href="{{ url_for('contact') }}" class="text-white hover:text-green-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
+                        <a href="{{ url_for('login_signup') }}" class="bg-white text-green-600 hover:bg-green-50 px-4 py-2 rounded-full text-sm font-medium transition-all">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Enhanced Hero Section -->
+    <section id="home" class="gradient-bg relative overflow-hidden pt-16">
+        <div class="absolute inset-0 bg-black opacity-10"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="text-white space-y-8">
+                    <div class="space-y-4">
+                        <h1 class="text-4xl md:text-6xl font-bold leading-tight">
+                            Smart Farming with
+                            <span class="text-yellow-300">AI Intelligence</span>
+                        </h1>
+                        <p class="text-xl text-green-100 leading-relaxed">
+                            Revolutionize your agriculture with AI-powered soil analysis, plant disease detection, and real-time weather monitoring. Increase your crop yield significantly and reduce costs with intelligent farming decisions.
+                        </p>
+                    </div>
+                    
+            <div class="flex flex-col sm:flex-row gap-4">
+   <button class="bg-white text-green-600 hover:bg-green-50 px-8 py-4 rounded-full font-semibold text-lg transition-all transform hover:scale-105 shadow-lg">
+       <i class="fas fa-play mr-2"></i>
+       Get Started 
+   </button>
+   <a href="https://youtu.be/dZ7aSZ809c8?si=lm_MDWchO3PypbBf" target="_blank" rel="noopener noreferrer">
+       <button class="border-2 border-white text-white hover:bg-white hover:text-green-600 px-8 py-4 rounded-full font-semibold text-lg transition-all">
+           <i class="fas fa-video mr-2"></i>
+           Watch Demo
+       </button>
+   </a>
+</div>
+                    
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-8 pt-8 border-t border-green-400">
+                        <div class="text-center">
+                            <div class="stats-counter text-yellow-300">100+</div>
+                            <div class="text-green-100">Problems Solved</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="stats-counter text-yellow-300">95%</div>
+                            <div class="text-green-100">Accuracy Rate</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="stats-counter text-yellow-300">24/7</div>
+                            <div class="text-green-100">AI Support</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="floating-animation">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-r from-green-400 to-green-600 rounded-3xl transform rotate-6 opacity-20"></div>
+                         <img src="./static/images/Agro AI Image.png" alt="AgroAI Dashboard" class="relative rounded-3xl shadow-2xl w-full h-96 object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Intelligent Farming Solutions</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Harness the power of artificial intelligence to transform your farming practices and maximize your agricultural potential.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Plant Disease Detection -->
+                <div class="feature-card bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl border border-green-200">
+                    <div class="w-16 h-16 bg-green-500 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-microscope text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">AI Disease Detection</h3>
+                    <p class="text-gray-600 mb-6">Upload leaf images and get instant disease identification with 95% accuracy. Early detection saves crops and increases yield.</p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Real-time analysis</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Treatment recommendations</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Prevention strategies</li>
+                    </ul>
+                </div>
+
+                <!-- Soil Health Monitoring -->
+                <div class="feature-card bg-gradient-to-br from-emerald-50 to-emerald-100 p-8 rounded-2xl border border-emerald-200">
+                    <div class="w-16 h-16 bg-emerald-500 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-seedling text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Soil Analysis</h3>
+                    <p class="text-gray-600 mb-6">Comprehensive soil health monitoring with nutrient analysis, pH levels, and moisture content tracking.</p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li class="flex items-center"><i class="fas fa-check text-emerald-500 mr-2"></i>Nutrient mapping</li>
+                        <li class="flex items-center"><i class="fas fa-check text-emerald-500 mr-2"></i>pH monitoring</li>
+                        <li class="flex items-center"><i class="fas fa-check text-emerald-500 mr-2"></i>Fertilizer recommendations</li>
+                    </ul>
+                </div>
+
+                <!-- Weather Intelligence -->
+                <div class="feature-card bg-gradient-to-br from-teal-50 to-teal-100 p-8 rounded-2xl border border-teal-200">
+                    <div class="w-16 h-16 bg-teal-500 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-cloud-sun text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Weather Intelligence</h3>
+                    <p class="text-gray-600 mb-6">Advanced weather forecasting with alerts for optimal planting, harvesting, and protection timing.</p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li class="flex items-center"><i class="fas fa-check text-teal-500 mr-2"></i>7-day forecasts</li>
+                        <li class="flex items-center"><i class="fas fa-check text-teal-500 mr-2"></i>Risk alerts</li>
+                        <li class="flex items-center"><i class="fas fa-check text-teal-500 mr-2"></i>Irrigation scheduling</li>
+                    </ul>
+                </div>
+
+                <!-- Crop Monitoring -->
+                <div class="feature-card bg-gradient-to-br from-lime-50 to-lime-100 p-8 rounded-2xl border border-lime-200">
+                    <div class="w-16 h-16 bg-lime-500 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-file-invoice text-white text-2xl"></i>  
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Reporting</h3>
+                    <p class="text-gray-600 mb-6">Generate detailed insights and analytics to track farm performance, optimize operations, and make data-driven decisions.</p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li class="flex items-center"><i class="fas fa-check text-lime-500 mr-2"></i>Performance Analytics</li>
+                        <li class="flex items-center"><i class="fas fa-check text-lime-500 mr-2"></i>Resource Utilization</li>
+                        <li class="flex items-center"><i class="fas fa-check text-lime-500 mr-2"></i>PDF Export Capabilities </li>
+                    </ul>
+                </div>
+
+                <!-- Smart Irrigation -->
+                <div class="feature-card bg-gradient-to-br from-cyan-50 to-cyan-100 p-8 rounded-2xl border border-cyan-200">
+                    <div class="w-16 h-16 bg-cyan-500 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-tint text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Smart Irrigation</h3>
+                    <p class="text-gray-600 mb-6">Automated irrigation recommendations based on soil moisture, weather conditions, and crop requirements.</p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li class="flex items-center"><i class="fas fa-check text-cyan-500 mr-2"></i>Water conservation</li>
+                        <li class="flex items-center"><i class="fas fa-check text-cyan-500 mr-2"></i>Automated scheduling</li>
+                        <li class="flex items-center"><i class="fas fa-check text-cyan-500 mr-2"></i>Cost reduction</li>
+                    </ul>
+                </div>
+
+                <!-- AI Chatbot -->
+                <div class="feature-card bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl border border-green-200">
+                    <div class="w-16 h-16 bg-green-500 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-robot text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">AI Farm Assistant</h3>
+                    <p class="text-gray-600 mb-6">24/7 AI-powered assistant providing instant answers to farming questions and personalized recommendations.</p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Instant support</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Expert knowledge</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Multilingual support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chatbot Container -->
+    <div class="chatbot-container">
+        <!-- Chatbot Window -->
+        <div id="chatbot-window" class="chatbot-window">
+            <!-- Header -->
+            <div class="chatbot-header">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <i class="fas fa-robot text-2xl mr-3"></i>
+                        <div>
+                            <h3 class="font-bold text-lg">AgroAI Assistant</h3>
+                            <p class="text-sm opacity-90">Your Smart Farming Helper</p>
+                        </div>
+                    </div>
+                    <button onclick="toggleChat()" class="text-white hover:text-green-200 p-2">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Messages Area -->
+            <div id="chat-messages" class="chatbot-messages">
+                <div class="message bot">
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-leaf text-green-600 mr-2"></i>
+                        <strong>AgroAI Assistant</strong>
+                    </div>
+                    <p>Welcome to AgroAI! 🌱 I'm here to help you with all your farming questions. How can I assist you today?</p>
+                    <div class="quick-actions">
+                        <button class="quick-action" onclick="sendQuickMessage('Disease Detection')">🔬 Disease Detection</button>
+                        <button class="quick-action" onclick="sendQuickMessage('Soil Analysis')">🌱 Soil Analysis</button>
+                        <button class="quick-action" onclick="sendQuickMessage('Weather Info')">🌤️ Weather Info</button>
+                        <button class="quick-action" onclick="sendQuickMessage('Crop Care')">🌾 Crop Care</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="chatbot-input">
+                <input 
+                    type="text" 
+                    id="chat-input" 
+                    placeholder="Ask me about farming, diseases, soil health..."
+                    onkeypress="handleKeyPress(event)"
+                >
+                <button class="send-button" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Chat Toggle Button -->
+        <button id="chat-toggle" class="chat-toggle" onclick="toggleChat()">
+            <i class="fas fa-comments"></i>
+            <span class="notification-badge" id="notification-badge" style="display: none;">!</span>
+        </button>
+    </div>
+
+    <!-- Rest of the original content continues... -->
+<section id="crops" class="py-20 bg-gradient-to-br from-green-50 to-emerald-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Supported Crop Varieties</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Our AI models are trained on extensive datasets for accurate disease detection and health monitoring across multiple crop types.</p>
+            </div>
+            
+            <!-- Crops Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+                
+                <!-- Tomatoes Card -->
+                <div class="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 w-full max-w-sm flex flex-col items-center">
+                    <div class="w-24 h-24 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-apple-alt text-red-500 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Tomatoes</h3>
+                    <p class="text-gray-600 mb-4 text-center">Detect Early Blight, Late Blight, Leaf Mold, and other common diseases.</p>
+                    <div class="text-sm text-gray-500 mt-auto">
+                        <div class="flex justify-center space-x-4 flex-wrap gap-2">
+                            <span class="flex items-center">
+                                <span class="mr-1">🔍</span>
+                                <span>Detection</span>
+                            </span>
+                            <span class="flex items-center">
+                                <span class="mr-1">📊</span>
+                                <span>Analysis</span>
+                            </span>
+                            <span class="flex items-center">
+                                <span class="mr-1">💡</span>
+                                <span>Treatment</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Potatoes Card -->
+                <div class="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 w-full max-w-sm flex flex-col items-center">
+                    <div class="w-24 h-24 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-seedling text-yellow-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Potatoes</h3>
+                    <p class="text-gray-600 mb-4 text-center">Identify Blackleg, Late Blight, Scab, and bacterial infections early.</p>
+                    <div class="text-sm text-gray-500 mt-auto">
+                        <div class="flex justify-center space-x-4 flex-wrap gap-2">
+                            <span class="flex items-center">
+                                <span class="mr-1">🔍</span>
+                                <span>Detection</span>
+                            </span>
+                            <span class="flex items-center">
+                                <span class="mr-1">📊</span>
+                                <span>Analysis</span>
+                            </span>
+                            <span class="flex items-center">
+                                <span class="mr-1">💡</span>
+                                <span>Treatment</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- More Crops Card -->
+                <div class="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 w-full max-w-sm flex flex-col items-center md:col-span-2 lg:col-span-1">
+                    <div class="w-24 h-24 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-carrot text-orange-500 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">More Crops</h3>
+                    <p class="text-gray-600 mb-4 text-center">Expanding to corn, rice, peppers, and other major agricultural crops.</p>
+                    <div class="text-sm text-gray-500 mt-auto">
+                        <div class="flex justify-center space-x-4 flex-wrap gap-2">
+                            <span class="flex items-center">
+                                <span class="mr-1">🚀</span>
+                                <span>Expanding</span>
+                            </span>
+                            <span class="flex items-center">
+                                <span class="mr-1">🌾</span>
+                                <span>Coming Soon</span>
+                            </span>
+                            <span class="flex items-center">
+                                <span class="mr-1">🎯</span>
+                                <span>Precision</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- How It Works -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">How AgroAI Works</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Simple, powerful, and effective - get started with AI-powered farming in just three steps.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 pulse-green">
+                        <span class="text-white text-2xl font-bold">1</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Upload & Capture</h3>
+                    <p class="text-gray-600">Take photos of your crops, soil, or upload existing images through our mobile app or web platform.</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 pulse-green" style="animation-delay: 0.5s;">
+                        <span class="text-white text-2xl font-bold">2</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">AI Analysis</h3>
+                    <p class="text-gray-600">Our advanced AI models analyze your images in real-time, identifying diseases & health indicators.</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 pulse-green" style="animation-delay: 1s;">
+                        <span class="text-white text-2xl font-bold">3</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Get Recommendations</h3>
+                    <p class="text-gray-600">Receive instant, actionable insights with treatment options, prevention strategies, and expert advice.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-leaf text-2xl mr-3"></i>
+                        <h3 class="text-2xl font-bold">AgroAI Assist</h3>
+                    </div>
+                    <p class="text-green-100 mb-6 max-w-md">
+                        Empowering farmers worldwide with AI-driven agricultural solutions. Join the smart farming revolution and increase your crop yield with intelligent technology.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-green-700 rounded-full flex items-center justify-center hover:bg-green-800 transition-all">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-green-700 rounded-full flex items-center justify-center hover:bg-green-800 transition-all">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-green-700 rounded-full flex items-center justify-center hover:bg-green-800 transition-all">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-green-700 rounded-full flex items-center justify-center hover:bg-green-800 transition-all">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-green-100 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#features" class="text-green-100 hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#crops" class="text-green-100 hover:text-white transition-colors">Supported Crops</a></li>
+                        <li><a href="#about" class="text-green-100 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#contact" class="text-green-100 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Support</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-green-100 hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="text-green-100 hover:text-white transition-colors">Documentation</a></li>
+                        <li><a href="#" class="text-green-100 hover:text-white transition-colors">API Reference</a></li>
+                        <li><a href="#" class="text-green-100 hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-green-100 hover:text-white transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-green-700 pt-8 mt-12 text-center">
+                <p class="text-green-100">
+                    © 2025 AgroAI Assist. All rights reserved. Made with <i class="fas fa-heart text-red-400"></i> for farmers worldwide.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Existing JavaScript functions
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                navbar.classList.add('bg-opacity-95');
+            } else {
+                navbar.classList.remove('bg-opacity-95');
+            }
+        });
+
+        // Stats counter animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stats-counter');
+            counters.forEach(counter => {
+                const target = counter.textContent;
+                const numericTarget = parseInt(target.replace(/\D/g, ''));
+                let current = 0;
+                const increment = numericTarget / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= numericTarget) {
+                        counter.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = Math.floor(current) + (target.includes('K') ? 'K+' : target.includes('%') ? '%' : '');
+                    }
+                }, 20);
+            });
+        }
+
+        // Chatbot Variables
+        let isTyping = false;
+        let chatHistory = [];
+
+        // Chatbot Knowledge Base
+        const knowledgeBase = {
+            'disease detection': {
+                response: `🔬 **AI Disease Detection** helps identify plant diseases early!
+
+**How it works:**
+• Upload clear photos of affected leaves
+• Our AI analyzes in real-time with 95% accuracy
+• Get instant diagnosis and treatment recommendations
+
+**Supported diseases:**
+• Tomato: Early Blight, Late Blight, Leaf Mold
+• Potato: Blackleg, Late Blight, Scab
+• General: Bacterial infections, fungal diseases
+
+Would you like me to guide you through uploading an image for analysis?`,
+                quickActions: ['Upload Image', 'Tomato Diseases', 'Potato Diseases', 'Prevention Tips']
+            },
+            'soil analysis': {
+                response: `🌱 **Soil Health Monitoring** optimizes your crop nutrition!
+
+**Our analysis covers:**
+• pH levels and acidity balance
+• Nutrient content (N-P-K)
+• Organic matter percentage
+• Moisture retention capacity
+• Micronutrient deficiencies
+
+**Benefits:**
+• Personalized fertilizer recommendations
+• Improved crop yield (up to 35% increase)
+• Cost-effective nutrient management
+• Soil health improvement strategies
+
+Ready to test your soil? I can help you get started!`,
+                quickActions: ['pH Testing', 'Fertilizer Guide', 'Soil Samples', 'Nutrient Plans']
+            },
+            'weather info': {
+                response: `🌤️ **Weather Intelligence** keeps your crops protected!
+
+**Current features:**
+• 7-day accurate forecasts
+• Frost and heat wave alerts
+• Optimal planting/harvesting windows
+• Irrigation scheduling recommendations
+• Pest outbreak predictions
+
+**Smart alerts for:**
+• Unexpected weather changes
+• Critical temperature thresholds
+• Rainfall patterns
+• Wind speed warnings
+
+Would you like weather recommendations for your specific crop type?`,
+                quickActions: ['Today\'s Weather', 'Irrigation Schedule', 'Frost Alerts', 'Harvest Timing']
+            },
+            'crop care': {
+                response: `🌾 **Comprehensive Crop Care** maximizes your harvest!
+
+**Growth monitoring:**
+• Real-time growth stage tracking
+• Yield prediction algorithms
+• Resource optimization tips
+• Harvest timing recommendations
+
+**Care recommendations:**
+• Watering schedules
+• Fertilization timing
+• Pest prevention
+• Pruning guidelines
+
+**Supported crops:**
+• Tomatoes, Potatoes (full support)
+• Wheat, Corn (coming soon)
+• Custom crop plans available
+
+Which crop would you like specific care instructions for?`,
+                quickActions: ['Tomato Care', 'Potato Care', 'Watering Guide', 'Growth Tracking']
+            }
+        };
+
+        // Enhanced responses for specific queries
+        const enhancedResponses = {
+            'hello': 'Hello! 🌱 Welcome to AgroAI! I\'m here to help you with smart farming solutions. What would you like to know about?',
+            'hi': 'Hi there! 🌿 I\'m your AI farming assistant. How can I help you grow better crops today?',
+            'help': 'I can help you with:\n🔬 Disease detection and treatment\n🌱 Soil health analysis\n🌤️ Weather forecasting\n🌾 Crop care recommendations\n💧 Irrigation planning\n\nWhat interests you most?',
+            'pricing': 'Our pricing plans:\n💰 **Basic**: ₹999/month - Perfect for small farms\n⭐ **Professional**: ₹2,499/month - Ideal for medium farms\n🏢 **Enterprise**: ₹4,999/month - For large operations\n\nWould you like details about any specific plan?',
+            'contact': 'You can reach us:\n📞 Phone: +91 98765 43210\n📧 Email: support@agroai.com\n📍 Office: Mumbai, Maharashtra, India\n\nOr continue chatting with me for instant help! 😊',
+            'features': 'AgroAI offers:\n🔬 AI Disease Detection\n🌱 Soil Health Analysis\n🌤️ Weather Intelligence\n📈 Growth Tracking\n💧 Smart Irrigation\n🤖 24/7 AI Assistant (that\'s me!)\n\nWhich feature would you like to explore?'
+        };
+
+        // Toggle Chat Function
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatbot-window');
+            const chatToggle = document.getElementById('chat-toggle');
+            const notificationBadge = document.getElementById('notification-badge');
+            
+            chatWindow.classList.toggle('open');
+            
+            if (chatWindow.classList.contains('open')) {
+                chatToggle.innerHTML = '<i class="fas fa-times"></i>';
+                notificationBadge.style.display = 'none';
+                // Focus on input when opening
+                setTimeout(() => {
+                    document.getElementById('chat-input').focus();
+                }, 300);
+            } else {
+                chatToggle.innerHTML = '<i class="fas fa-comments"></i>';
+            }
+        }
+
+        // Send Message Function
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+            
+            if (message === '') return;
+            
+            // Add user message
+            addMessage(message, 'user');
+            input.value = '';
+            
+            // Show typing indicator
+            showTyping();
+            
+            // Generate AI response
+            setTimeout(() => {
+                hideTyping();
+                const response = generateResponse(message);
+                addMessage(response.text, 'bot', response.quickActions);
+            }, 1500 + Math.random() * 1000); // Random delay for realism
+        }
+
+        // Handle Enter Key Press
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // Send Quick Message
+        function sendQuickMessage(message) {
+            document.getElementById('chat-input').value = message;
+            sendMessage();
+        }
+
+        // Add Message to Chat
+        function addMessage(text, sender, quickActions = null) {
+            const messagesContainer = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            
+            if (sender === 'bot') {
+                const formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                        .replace(/\n/g, '<br>');
+                messageDiv.innerHTML = `
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-robot text-green-600 mr-2"></i>
+                        <strong>AgroAI Assistant</strong>
+                    </div>
+                    <p>${formattedText}</p>
+                `;
+                
+                if (quickActions && quickActions.length > 0) {
+                    const actionsDiv = document.createElement('div');
+                    actionsDiv.className = 'quick-actions';
+                    quickActions.forEach(action => {
+                        const button = document.createElement('button');
+                        button.className = 'quick-action';
+                        button.textContent = action;
+                        button.onclick = () => sendQuickMessage(action);
+                        actionsDiv.appendChild(button);
+                    });
+                    messageDiv.appendChild(actionsDiv);
+                }
+            } else {
+                messageDiv.innerHTML = `<p>${text}</p>`;
+            }
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Add to chat history
+            chatHistory.push({message: text, sender: sender, timestamp: new Date()});
+        }
+
+        // Show Typing Indicator
+        function showTyping() {
+            if (isTyping) return;
+            
+            isTyping = true;
+            const messagesContainer = document.getElementById('chat-messages');
+            const typingDiv = document.createElement('div');
+            typingDiv.id = 'typing-indicator';
+            typingDiv.className = 'typing-indicator';
+            typingDiv.innerHTML = `
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            `;
+            
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        // Hide Typing Indicator
+        function hideTyping() {
+            const typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+            isTyping = false;
+        }
+
+        // Generate AI Response
+        function generateResponse(userMessage) {
+            const message = userMessage.toLowerCase();
+            
+            // Check for exact matches first
+            if (enhancedResponses[message]) {
+                return {
+                    text: enhancedResponses[message],
+                    quickActions: ['Disease Detection', 'Soil Analysis', 'Weather Info', 'Pricing']
+                };
+            }
+            
+            // Check knowledge base
+            for (const [key, value] of Object.entries(knowledgeBase)) {
+                if (message.includes(key.toLowerCase()) || 
+                    message.includes(key.replace(' ', '').toLowerCase())) {
+                    return {
+                        text: value.response,
+                        quickActions: value.quickActions
+                    };
+                }
+            }
+            
+            // Keyword-based responses
+            if (message.includes('tomato')) {
+                return {
+                    text: `🍅 **Tomato Care Specialist** here to help!
+
+**Common tomato issues I can help with:**
+• Early Blight - Brown spots with yellow halos
+• Late Blight - Dark, water-soaked lesions
+• Leaf Mold - Yellowing leaves with fuzzy growth
+• Nutrient deficiencies
+• Watering and fertilization schedules
+
+**Quick tips:**
+• Water at soil level, not on leaves
+• Ensure good air circulation
+• Regular inspection for early detection
+
+What specific tomato issue are you facing?`,
+                    quickActions: ['Early Blight', 'Late Blight', 'Watering Tips', 'Fertilizer Schedule']
+                };
+            }
+            
+            if (message.includes('potato')) {
+                return {
+                    text: `🥔 **Potato Growing Expert** at your service!
+
+**Potato health monitoring:**
+• Blackleg disease detection
+• Late Blight identification
+• Scab prevention strategies
+• Storage recommendations
+• Harvest timing optimization
+
+**Key potato care tips:**
+• Hill soil around plants as they grow
+• Monitor for Colorado potato beetles
+• Avoid overwatering to prevent rot
+• Harvest when foliage dies back
+
+Which aspect of potato farming interests you most?`,
+                    quickActions: ['Disease Check', 'Harvest Time', 'Storage Tips', 'Pest Control']
+                };
+            }
+            
+            if (message.includes('water') || message.includes('irrigation')) {
+                return {
+                    text: `💧 **Smart Irrigation Guide**
+
+**Optimal watering practices:**
+• Water deeply, less frequently
+• Early morning is the best time
+• Check soil moisture 2-3 inches deep
+• Adjust based on weather conditions
+
+**Our smart irrigation system considers:**
+• Soil moisture sensors data
+• Weather forecasts
+• Crop growth stages
+• Evapotranspiration rates
+
+Would you like a custom irrigation schedule for your crops?`,
+                    quickActions: ['Schedule Setup', 'Moisture Check', 'Weather Impact', 'Water Conservation']
+                };
+            }
+            
+            if (message.includes('fertilizer') || message.includes('nutrient')) {
+                return {
+                    text: `🌱 **Nutrient Management Specialist**
+
+**Essential nutrients for healthy crops:**
+• **Nitrogen (N)** - Leaf growth and green color
+• **Phosphorus (P)** - Root development and flowering
+• **Potassium (K)** - Disease resistance and fruit quality
+• **Secondary nutrients** - Calcium, Magnesium, Sulfur
+• **Micronutrients** - Iron, Zinc, Boron, etc.
+
+**Our soil analysis provides:**
+• Current nutrient levels
+• Deficiency identification
+• Customized fertilizer recommendations
+• Application timing guidance
+
+Ready to optimize your crop nutrition?`,
+                    quickActions: ['Soil Test', 'NPK Guide', 'Organic Options', 'Application Schedule']
+                };
+            }
+            
+            if (message.includes('pest') || message.includes('insect')) {
+                return {
+                    text: `🐛 **Integrated Pest Management**
+
+**Common agricultural pests:**
+• Aphids - Small, soft-bodied insects
+• Whiteflies - Tiny white flying insects
+• Thrips - Slender, fast-moving insects
+• Colorado potato beetle
+• Tomato hornworm
+
+**Our AI-powered pest detection:**
+• Early identification from leaf damage
+• Species-specific treatment recommendations
+• Biological control suggestions
+• Preventive measures
+
+**Sustainable pest control approach:**
+• Beneficial insects encouragement
+• Crop rotation strategies
+• Natural pesticide options
+
+What pest issue are you encountering?`,
+                    quickActions: ['Pest ID', 'Natural Control', 'Beneficial Insects', 'Prevention']
+                };
+            }
+            
+            // Default helpful response
+            const defaultResponses = [
+                `I understand you're asking about "${userMessage}". While I may not have specific information on that exact topic, I can help you with:
+
+🔬 **Plant disease identification** - Upload photos for instant diagnosis
+🌱 **Soil health analysis** - Get detailed soil reports
+🌤️ **Weather-based recommendations** - Optimize farming schedules
+🌾 **Crop care guidance** - Personalized growing advice
+
+What would you like to explore?`,
+                
+                `That's an interesting question about "${userMessage}"! Let me help you with our core farming solutions:
+
+**Available right now:**
+• Disease detection for tomatoes and potatoes
+• Comprehensive soil analysis
+• Weather forecasting and alerts
+• Irrigation scheduling
+• Crop growth monitoring
+
+**Coming soon:**
+• Wheat and corn support
+• Advanced pest identification
+• Market price predictions
+
+Which of these can I help you with today?`,
+                
+                `Thanks for asking about "${userMessage}"! While I continue learning, I'm already expert in:
+
+🎯 **Immediate support:**
+• Plant disease diagnosis (95% accuracy)
+• Soil nutrient analysis
+• Weather-smart farming
+• Irrigation optimization
+
+📞 **Additional help:**
+• Contact our experts: +91 98765 43210
+• Email: support@agroai.com
+• Browse our comprehensive help center
+
+How can I assist you with smart farming today?`
+            ];
+            
+            return {
+                text: defaultResponses[Math.floor(Math.random() * defaultResponses.length)],
+                quickActions: ['Disease Detection', 'Soil Analysis', 'Weather Info', 'Contact Expert']
+            };
+        }
+
+        // Show notification badge when page loads
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                const notificationBadge = document.getElementById('notification-badge');
+                notificationBadge.style.display = 'flex';
+                
+                // Hide badge after 5 seconds
+                setTimeout(() => {
+                    if (!document.getElementById('chatbot-window').classList.contains('open')) {
+                        notificationBadge.style.display = 'none';
+                    }
+                }, 5000);
+            }, 3000);
+        });
+
+        // Trigger counter animation when hero section is visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        const heroSection = document.querySelector('#home');
+        if (heroSection) {
+            observer.observe(heroSection);
+        }
+    </script>
+</body>
+</html>
